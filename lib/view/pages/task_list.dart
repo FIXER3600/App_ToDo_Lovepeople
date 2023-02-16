@@ -10,6 +10,7 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
+  TextEditingController? _textEditingController = TextEditingController();
   setFullScreen() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
@@ -23,12 +24,23 @@ class _TaskListState extends State<TaskList> {
         fit: StackFit.expand,
         children: [
           Container(
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(169, 1, 247, 1),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.all(3),
+                  padding: const EdgeInsets.all(3),
+                  width: 80,
+                  height: 80,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(80),
+                    ),
+                  ),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Image.asset(
@@ -36,17 +48,20 @@ class _TaskListState extends State<TaskList> {
                       scale: 9,
                     ),
                   ),
-                  width: 80,
-                  height: 80,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.only(bottomRight: Radius.circular(80))),
+                ),
+                Row(
+                  children: [
+                    Text('data'),
+                    TextField(
+                      controller: _textEditingController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                      ),
+                    )
+                  ],
                 )
               ],
-            ),
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(169, 1, 247, 1),
             ),
           ),
         ],
