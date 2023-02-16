@@ -7,7 +7,7 @@ class SignupSuccsess extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
        return Scaffold(
-           appBar: AppBar(title: const Text(''),),
+           appBar: AppBar(title: const Text('Sucesso'),),
            body: Container(),
        );
   }
