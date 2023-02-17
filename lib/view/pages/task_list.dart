@@ -19,51 +19,34 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     setFullScreen();
+    // ignore: prefer_const_constructors
     return Scaffold(
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(169, 1, 247, 1),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(3),
-                      width: 80,
-                      height: 80,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(80),
-                        ),
-                      ),
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Image.asset(
-                          'assets/images/logo.png',
-                          scale: 9,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(40),
-                    ),
-                    Text(
-                      'Suas listagens',
-                      style: TextStyle(fontSize: 20.0, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+      backgroundColor: const Color.fromRGBO(169, 1, 247, 1),
+      body: Container(
+        padding: const EdgeInsets.all(3),
+        width: 80,
+        height: 80,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(80),
           ),
-        ],
+        ),
+        child: Row(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Image.asset(
+                'assets/images/logo.png',
+                scale: 9,
+              ),
+            ),
+            const Text(
+              'Suas listagens',
+              style: TextStyle(fontSize: 20.0, color: Colors.white),
+            ),
+          ],
+        ),
       ),
     );
   }
