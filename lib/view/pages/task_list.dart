@@ -31,36 +31,35 @@ class _TaskListState extends State<TaskList> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(3),
-                  width: 80,
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(80),
-                    ),
-                  ),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      scale: 9,
-                    ),
-                  ),
-                ),
                 Row(
                   children: [
-                    Text('data'),
-                    TextField(
-                      controller: _textEditingController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        errorBorder: InputBorder.none,
+                    Container(
+                      padding: const EdgeInsets.all(3),
+                      width: 80,
+                      height: 80,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(80),
+                        ),
                       ),
-                    )
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          scale: 9,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(40),
+                    ),
+                    Text(
+                      'Suas listagens',
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
