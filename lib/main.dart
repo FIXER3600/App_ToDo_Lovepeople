@@ -14,11 +14,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'ToDo Lovepeople',
-       debugShowCheckedModeBanner: false,
-       initialRoute: 'signup',
-        routes: {
+      debugShowCheckedModeBanner: false,
+      initialRoute: 'signup',
+      routes: {
         'signup': (context) => const Signup(),
-        'success':(context)=>const SignupSuccsess(),
+        'success': (context) => const SignupSuccsess(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
