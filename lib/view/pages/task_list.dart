@@ -18,6 +18,13 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
+    String tarefa = '';
+    List<String> listaTarefas = [
+      'Correr todos dias',
+      'treinar na academia três vezes na semana',
+      'ir ao ingles aos sabados',
+      'estudar todos dias'
+    ];
     setFullScreen();
 
     return Scaffold(
@@ -46,6 +53,7 @@ class _TaskListState extends State<TaskList> {
               ),
             ],
           ),
+          // TITULO
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -55,6 +63,7 @@ class _TaskListState extends State<TaskList> {
               ),
             ],
           ),
+          // SEACH BOX
           Container(
             padding: EdgeInsets.all(20),
             child: TextField(
@@ -65,6 +74,21 @@ class _TaskListState extends State<TaskList> {
                   filled: true,
                   fillColor: Colors.white),
             ),
+          ),
+
+          SizedBox(
+            height: 50,
+            width: 50,
+          ),
+          ListView.builder(
+            itemCount: listaTarefas.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                child: ListTile(
+                  title: Text(textAlign: TextAlign.center, listaTarefas[index]),
+                ),
+              );
+            },
           ),
         ],
       ),
