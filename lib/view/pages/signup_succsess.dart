@@ -10,9 +10,9 @@ class SignupSuccsess extends StatelessWidget {
         backgroundColor: const Color(0xFFA901F7),
         body: SafeArea(
           child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.center,
+        
             children: [
-              const SizedBox(height: 100),
+              const SizedBox(height: 150),
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Column(
@@ -28,7 +28,7 @@ class SignupSuccsess extends StatelessWidget {
                           fontFamily: 'Montserrat-SemiBold'),
                     ),
                     const SizedBox(
-                      height: 50,
+                      height: 40,
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -59,29 +59,32 @@ class SignupSuccsess extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(250))),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'lib/view/assets/images/coruja-image.png',
-                      ),
-                      const Text('Os ventos da programação estão indo até você',
+             const SizedBox(height: 85,),
+              Container(
+                width: 500,
+                height: 250,
+               
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(190))),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Image.asset(
+                      'lib/view/assets/images/coruja-image.png',
+                      height:150
+                    ),
+                    Container(
+                       margin: const EdgeInsets.only(bottom:20,top: 10),
+                      child: const Text('Os ventos da programação estão indo até você',
                           style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 15,
                               color: Color(0xFF3101B9),
                               fontFamily: 'Tahoma')),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],
