@@ -2,6 +2,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+List<String> listaTarefas = [
+  '''limpar a casa Duis voluptate laboris veniam laboris Lorem esse excepteur quis id aute labore quis. Labore irure qui labore quis et duis proident amet officia. Cupidatat eu aliqua veniam ea mollit qui elit enim occaecat.''',
+  '''pintar a casa Consectetur pariatur labore in nulla nulla Lorem cillum aliqua irure eu tempor commodo deserunt veniam. Eu occaecat  Do consectetur Lorem laborum tempor est sit aliqua duis mollit magna nostrud. Eu non exercitation esse et exercitation magna.''',
+  '''arrumar a casa Sunt culpa dolore dolore proident aliqua. Deserunt .'''
+];
+
 class TaskList extends StatefulWidget {
   const TaskList({super.key});
 
@@ -19,12 +25,7 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     String tarefa = '';
-    List<String> listaTarefas = [
-      'Correr todos dias',
-      'treinar na academia três vezes na semana',
-      'ir ao ingles aos sabados',
-      'estudar todos dias'
-    ];
+
     setFullScreen();
 
     return Scaffold(
@@ -68,6 +69,7 @@ class _TaskListState extends State<TaskList> {
             padding: EdgeInsets.all(20),
             child: TextField(
               decoration: InputDecoration(
+                  labelText: 'Busque palavras-chave',
                   suffixIcon: Icon(Icons.search),
                   enabledBorder: UnderlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -76,22 +78,47 @@ class _TaskListState extends State<TaskList> {
             ),
           ),
 
+          // caixa de texto
+
+          box(Color.fromRGBO(255, 242, 204, 1), listaTarefas[0]),
+          box(Color.fromRGBO(199, 255, 203, 1), listaTarefas[1]),
+          box(Color.fromRGBO(232, 197, 255, 1), listaTarefas[1]),
+
           SizedBox(
-            height: 50,
-            width: 50,
+            height: 5,
+            width: 5,
           ),
-          ListView.builder(
-            itemCount: listaTarefas.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Card(
-                child: ListTile(
-                  title: Text(textAlign: TextAlign.center, listaTarefas[index]),
-                ),
-              );
-            },
-          ),
+
+          Icon(
+            Icons.add,
+            size: 75,
+            color: Colors.white,
+          )
         ],
       ),
+    );
+  }
+
+  Widget box(Color cor, String texto) {
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(8),
+          width: 320,
+          height: 100,
+          decoration: BoxDecoration(
+            color: cor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          child: Text(texto),
+        ),
+        SizedBox(
+          height: 15,
+          width: 15,
+        ),
+      ],
     );
   }
 }
