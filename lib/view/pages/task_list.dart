@@ -84,12 +84,12 @@ class _TaskListState extends State<TaskList> {
           box(Color.fromRGBO(199, 255, 203, 1), listaTarefas[1]),
           box(Color.fromRGBO(232, 197, 255, 1), listaTarefas[1]),
 
-          SizedBox(
+          const SizedBox(
             height: 5,
             width: 5,
           ),
 
-          Icon(
+          const Icon(
             Icons.add,
             size: 75,
             color: Colors.white,
@@ -114,7 +114,7 @@ class _TaskListState extends State<TaskList> {
           ),
           child: Text(texto),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
           width: 15,
         ),
