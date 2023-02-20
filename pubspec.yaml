@@ -78,10 +78,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: 'Montserrat-SemiBold'
+    - family: Montserrat-SemiBold
       fonts:
         - asset: ./lib/view/assets/fonts/montserrat-semi-bold.ttf
-    - family: 'Tahoma'
+    - family: Tahoma
       fonts:
         - asset: ./lib/view/assets/fonts/Tahoma-Regular-font.ttf    
   #   - family: Schyler
