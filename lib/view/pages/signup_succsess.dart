@@ -10,16 +10,15 @@ class SignupSuccsess extends StatelessWidget {
         backgroundColor: const Color(0xFFA901F7),
         body: SafeArea(
           child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(height: 100),
               Padding(
-                padding: const EdgeInsets.all(42.0),
+                padding: const EdgeInsets.all(30.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 200,
-                    ),
                     const Text(
                       'Cadastro concluído!',
                       style: TextStyle(
@@ -29,7 +28,7 @@ class SignupSuccsess extends StatelessWidget {
                           fontFamily: 'Montserrat-SemiBold'),
                     ),
                     const SizedBox(
-                      height: 25,
+                      height: 50,
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -38,7 +37,7 @@ class SignupSuccsess extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.only(
-                            right: 25, left: 25, bottom: 7, top: 7),
+                            right: 25, left: 25, bottom: 15, top: 15),
                         side: const BorderSide(
                           width: 2.0,
                           color: Colors.white,
@@ -61,30 +60,26 @@ class SignupSuccsess extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 100,
+                height: 40,
               ),
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(0),
                   decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(190))),
+                          BorderRadius.vertical(top: Radius.circular(250))),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Image.asset(
-                          'lib/view/assets/images/coruja-image.png',
-                        ),
+                      Image.asset(
+                        'lib/view/assets/images/coruja-image.png',
                       ),
                       const Text('Os ventos da programação estão indo até você',
                           style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 10,
-                            color: Color(0xFF3101B9),
-                          )),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15,
+                              color: Color(0xFF3101B9),
+                              fontFamily: 'Tahoma')),
                     ],
                   ),
                 ),
