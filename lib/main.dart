@@ -1,5 +1,7 @@
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
 import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
+import 'package:app_todo_lovepeople/view/pages/task_list.dart';
+import 'package:app_todo_lovepeople/view/pages/todo_register.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,10 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'ToDo Lovepeople',
       debugShowCheckedModeBanner: false,
-      initialRoute: 'signup',
+      initialRoute: 'todo_register',
       routes: {
+        'todo_register': (context) => const TodoRegister(),
         'signup': (context) => const Signup(),
-        'success': (context) => const SignupSuccsess(),
+        'succsess': (context) => const SignupSuccsess(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
