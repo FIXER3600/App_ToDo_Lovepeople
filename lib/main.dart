@@ -1,7 +1,11 @@
+import 'package:app_todo_lovepeople/view/pages/task_list.dart';
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
 import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
+
 import 'package:app_todo_lovepeople/view/pages/task_list.dart';
 import 'package:app_todo_lovepeople/view/pages/todo_register.dart';
+
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(),
+      home: const TaskList()
     );
   }
 }
