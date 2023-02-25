@@ -12,6 +12,8 @@ class Signup extends StatefulWidget {
 }
 
 class _SignupState extends State<Signup> {
+  bool _isObscurePassword = true;
+ bool _isObscureConfirmPassword = true;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -43,25 +45,55 @@ class _SignupState extends State<Signup> {
               message: 'Nome obrigatório',
               label: 'Nome',
               height: 10,
+              obscure: false,
             ),
             Textformfield(
               controller: emailController,
               message: 'Email obrigatório',
               label: 'Número de telefone, email ou CPF',
               height: 10,
+              obscure: false,
             ),
             Textformfield(
-              controller: passwordController,
-              message: 'Senha obrigatória',
-              label: 'Senha',
-              height: 10,
-            ),
+                controller: passwordController,
+                message: 'Senha obrigatória',
+                label: 'Senha',
+                height: 10,
+                obscure: _isObscurePassword,
+                sufix: Align(
+                  widthFactor: 1.0,
+                  heightFactor: 1.0,
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isObscurePassword = !_isObscurePassword;
+                      });
+                    },
+                    color: const Color(0xFFA901F7),
+                    icon: Icon(
+                        _isObscurePassword ? Icons.visibility : Icons.visibility_off),
+                  ),
+                )),
             Textformfield(
-              controller: confirmPasswordController,
-              message: 'Confirme a senha',
-              label: 'Confirmar senha',
-              height: 30,
-            ),
+                controller: confirmPasswordController,
+                message: 'Confirme a senha',
+                label: 'Confirme a senha',
+                height: 10,
+                obscure: _isObscureConfirmPassword,
+                sufix: Align(
+                  widthFactor: 1.0,
+                  heightFactor: 1.0,
+                  child: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _isObscureConfirmPassword = !_isObscureConfirmPassword;
+                      });
+                    },
+                    color: const Color(0xFFA901F7),
+                    icon: Icon(
+                        _isObscureConfirmPassword ? Icons.visibility : Icons.visibility_off),
+                  ),
+                )),
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {

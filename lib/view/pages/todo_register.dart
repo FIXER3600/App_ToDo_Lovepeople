@@ -2,9 +2,7 @@
 
 import 'package:app_todo_lovepeople/view/widgets/textformfield.dart';
 import 'package:flutter/material.dart';
-import 'dart:ui';
 
-import 'package:flutter/services.dart';
 
 class TodoRegister extends StatefulWidget {
   const TodoRegister({super.key});
@@ -26,24 +24,13 @@ class _TodoRegisterState extends State<TodoRegister> {
   Widget build(BuildContext context) {
     //setFullScreen();
 
-    double left;
-    double top;
-    double right;
-
     return Scaffold(
       backgroundColor: const Color.fromRGBO(169, 1, 247, 1),
       body: Column(children: [
         Row(
           children: [
             Container(
-              padding: EdgeInsets.all(3),
-              child: Align(
-                alignment: Alignment.topLeft,
-                child: Image.asset(
-                  'lib/view/assets/images/logo.png',
-                  scale: 9,
-                ),
-              ),
+              padding: const EdgeInsets.all(3),
               width: 80,
               height: 80,
               decoration: const BoxDecoration(
@@ -52,13 +39,20 @@ class _TodoRegisterState extends State<TodoRegister> {
                   bottomRight: Radius.circular(80),
                 ),
               ),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Image.asset(
+                  'lib/view/assets/images/logo.png',
+                  scale: 9,
+                ),
+              ),
             ),
           ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
+          children: const [
+            Text(
               'Nova Tarefa',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
@@ -72,6 +66,7 @@ class _TodoRegisterState extends State<TodoRegister> {
           message: '',
           label: 'Título da Tarefa',
           height: 10,
+          obscure: false,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 42.0, right: 42.0),
@@ -100,11 +95,11 @@ class _TodoRegisterState extends State<TodoRegister> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _constroibotao('', color: Color(0xFFFFF2CC)),
-                _constroibotao('', color: Color(0XFFFFD9F0)),
-                _constroibotao('', color: Color(0XFFE8C5FF)),
-                _constroibotao('', color: Color(0XFFCAFBFF)),
-                _constroibotao('', color: Color(0XFFE3FFE6)),
+                _constroibotao('', color: const Color(0xFFFFF2CC)),
+                _constroibotao('', color: const Color(0XFFFFD9F0)),
+                _constroibotao('', color: const Color(0XFFE8C5FF)),
+                _constroibotao('', color: const Color(0XFFCAFBFF)),
+                _constroibotao('', color: const Color(0XFFE3FFE6)),
               ],
             ),
           ),
@@ -112,13 +107,13 @@ class _TodoRegisterState extends State<TodoRegister> {
         const SizedBox(
           height: 90,
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          const Icon(
+        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: const [
+          Icon(
             Icons.clear_rounded,
             size: 80,
             color: Colors.white,
           ),
-          const Icon(
+          Icon(
             Icons.check_rounded,
             size: 80,
             color: Colors.white,
@@ -141,7 +136,7 @@ Widget _constroibotao(String text, {Color color = Colors.grey}) {
         ),
         backgroundColor: MaterialStateProperty.all(color),
       ),
-      child: Text(""),
+      child: const Text(""),
     ),
   );
 }
