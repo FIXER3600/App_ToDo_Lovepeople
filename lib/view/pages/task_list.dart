@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,14 +36,7 @@ class _TaskListState extends State<TaskList> {
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(3),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    scale: 9,
-                  ),
-                ),
+                padding: const EdgeInsets.all(3),
                 width: 80,
                 height: 80,
                 decoration: const BoxDecoration(
@@ -53,14 +45,21 @@ class _TaskListState extends State<TaskList> {
                     bottomRight: Radius.circular(80),
                   ),
                 ),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    scale: 9,
+                  ),
+                ),
               ),
             ],
           ),
           // TITULO
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
+            children: const [
+              Text(
                 'Suas Listagens',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
@@ -69,8 +68,8 @@ class _TaskListState extends State<TaskList> {
           // SEACH BOX
           Container(
             width: MediaQuery.of(context).size.width * 0.94,
-            padding: EdgeInsets.only(top: 30, bottom: 15),
-            child: TextField(
+            padding: const EdgeInsets.only(top: 30, bottom: 15),
+            child: const TextField(
               decoration: InputDecoration(
                   labelText: 'Busque palavras-chave',
                   suffixIcon: Icon(Icons.search),
@@ -82,14 +81,12 @@ class _TaskListState extends State<TaskList> {
           ),
 
           // caixa de texto
-          Container(
-            child: Column(
-              children: [
-                box(Color.fromRGBO(255, 242, 204, 1), listaTarefas[0]),
-                box(Color.fromRGBO(199, 255, 203, 1), listaTarefas[1]),
-                box(Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
-              ],
-            ),
+          Column(
+            children: [
+              box(const Color.fromRGBO(255, 242, 204, 1), listaTarefas[0]),
+              box(const Color.fromRGBO(199, 255, 203, 1), listaTarefas[1]),
+              box(const Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
+            ],
           ),
 
           GestureDetector(
@@ -111,7 +108,7 @@ class _TaskListState extends State<TaskList> {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           width: MediaQuery.of(context).size.width * 0.94,
           height: 100,
           decoration: BoxDecoration(
