@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: 'login',
         routes: {
-          'login': (context) => const Login(),
+          'login': (context) => Login(),
           'todo_register': (context) => const TodoRegister(),
           'signup': (context) => const Signup(),
           'succsess': (context) => const SignupSuccsess(),
