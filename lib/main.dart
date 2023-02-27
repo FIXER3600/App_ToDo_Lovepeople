@@ -1,4 +1,4 @@
-import 'package:app_todo_lovepeople/view/pages/login.dart';
+import 'package:app_todo_lovepeople/view/pages/task_list.dart';
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
 import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
 import 'package:app_todo_lovepeople/view/pages/task_list.dart';
@@ -12,7 +12,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +19,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: 'login',
         routes: {
-          'login': (context) => Login(),
           'todo_register': (context) => const TodoRegister(),
           'signup': (context) => const Signup(),
           'succsess': (context) => const SignupSuccsess(),
