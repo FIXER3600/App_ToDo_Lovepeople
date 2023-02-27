@@ -13,7 +13,7 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   bool _isObscurePassword = true;
- bool _isObscureConfirmPassword = true;
+  bool _isObscureConfirmPassword = true;
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -70,8 +70,9 @@ class _SignupState extends State<Signup> {
                       });
                     },
                     color: const Color(0xFFA901F7),
-                    icon: Icon(
-                        _isObscurePassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_isObscurePassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                   ),
                 )),
             Textformfield(
@@ -90,8 +91,9 @@ class _SignupState extends State<Signup> {
                       });
                     },
                     color: const Color(0xFFA901F7),
-                    icon: Icon(
-                        _isObscureConfirmPassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_isObscureConfirmPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                   ),
                 )),
             ElevatedButton(

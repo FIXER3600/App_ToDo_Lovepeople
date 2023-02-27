@@ -1,3 +1,5 @@
+// ignore_for_file: equal_elements_in_set
+
 import 'package:app_todo_lovepeople/view/widgets/textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -77,8 +79,8 @@ class _TodoRegisterState extends State<TodoRegister> {
                   filled: true,
                   fillColor: Colors.white,
                   hintText: "Escreva uma descrição para sua tarefa.",
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: const BorderRadius.all(Radius.circular(13.0)),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
                   )),
             ),
           ),
