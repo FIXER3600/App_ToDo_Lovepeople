@@ -1,3 +1,4 @@
+import 'package:app_todo_lovepeople/view/pages/login.dart';
 import 'package:app_todo_lovepeople/view/pages/task_list.dart';
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
 import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
@@ -17,8 +18,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'ToDo Lovepeople',
         debugShowCheckedModeBanner: false,
-        initialRoute: 'todo_register',
+        initialRoute: 'login',
         routes: {
+          'login': (context) => const Login(),
           'todo_register': (context) => const TodoRegister(),
           'signup': (context) => const Signup(),
           'succsess': (context) => const SignupSuccsess(),
