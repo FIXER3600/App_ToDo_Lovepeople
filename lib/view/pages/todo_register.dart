@@ -1,5 +1,6 @@
 import 'package:app_todo_lovepeople/view/widgets/textformfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TodoRegister extends StatefulWidget {
   const TodoRegister({super.key});
@@ -12,14 +13,14 @@ class _TodoRegisterState extends State<TodoRegister> {
   final TextEditingController titulotarefa = TextEditingController();
   final TextEditingController descricaotarefa = TextEditingController();
 
-  //setFullScreen() {
-  //SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,
-  //overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-  //}
+  setFullScreen() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,
+        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+  }
 
   @override
   Widget build(BuildContext context) {
-    //setFullScreen();
+    setFullScreen();
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(169, 1, 247, 1),
@@ -77,7 +78,7 @@ class _TodoRegisterState extends State<TodoRegister> {
                   fillColor: Colors.white,
                   hintText: "Escreva uma descrição para sua tarefa.",
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: const BorderRadius.all(Radius.circular(13.0)),
                   )),
             ),
           ),
