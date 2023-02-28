@@ -48,7 +48,7 @@ class _TaskListState extends State<TaskList> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Image.asset(
-                    'assets/images/logo.png',
+                    'images/logo.png',
                     scale: 9,
                   ),
                 ),
@@ -91,7 +91,7 @@ class _TaskListState extends State<TaskList> {
 
           GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed('\task_register');
+              Navigator.of(context).pushNamed('todo_register');
             },
             child: const Icon(
               Icons.add,
