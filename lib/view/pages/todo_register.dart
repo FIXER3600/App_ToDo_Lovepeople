@@ -79,8 +79,8 @@ class _TodoRegisterState extends State<TodoRegister> {
                   filled: true,
                   fillColor: Colors.white,
                   hintText: "Escreva uma descrição para sua tarefa.",
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
                   )),
             ),
           ),
