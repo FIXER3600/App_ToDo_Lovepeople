@@ -1,3 +1,4 @@
+import 'package:app_todo_lovepeople/presenter/user_presenter.dart';
 import 'package:app_todo_lovepeople/view/pages/task_list.dart';
 import 'package:app_todo_lovepeople/view/pages/todo_register.dart';
 import 'package:app_todo_lovepeople/view/widgets/separator.dart';
@@ -13,12 +14,20 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  UserPresenter userPresenter = UserPresenter();
+
   final bool _isObscurePassword = true;
+  final bool _isObscureConfirmPassword = true;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  void loginUser(TextEditingController emailController,
+      TextEditingController passwordController) {
+    userPresenter.loginUser(emailController.text, passwordController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +137,7 @@ class _LoginState extends State<Login> {
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    loginUser(emailController, passwordController);
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: ((context) {
                       return const TaskList();
