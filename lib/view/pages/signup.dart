@@ -1,6 +1,5 @@
 import 'package:app_todo_lovepeople/presenter/user_presenter.dart';
 import 'package:app_todo_lovepeople/view/pages/login.dart';
-import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
 import 'package:app_todo_lovepeople/view/widgets/separator.dart';
 import 'package:app_todo_lovepeople/view/widgets/textformfield.dart';
 import 'package:flutter/material.dart';
@@ -116,12 +115,13 @@ class _SignupState extends State<Signup> {
                       value.validateSignUp();
                       SharedPreferences sharedPreferences =
                           await SharedPreferences.getInstance();
-                          bool? isAuth = sharedPreferences.getBool('isAuth');
-                          await value.registerUser(nameController.text,
-                            emailController.text, passwordController.text);
+                      bool? isAuth = sharedPreferences.getBool('isAuth');
+                      await value.registerUser(nameController.text,
+                          emailController.text, passwordController.text);
                       if ((value.isSignUpValid &&
-                          _formKey.currentState!.validate()) &&
-                          isAuth != null && isAuth) {
+                              _formKey.currentState!.validate()) &&
+                          isAuth != null &&
+                          isAuth) {
                         Navigator.pushNamed(context, 'succsess');
                       } else {
                         ScaffoldMessenger.of(context)
