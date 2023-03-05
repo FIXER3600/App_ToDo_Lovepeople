@@ -5,6 +5,7 @@ import 'package:app_todo_lovepeople/view/widgets/separator.dart';
 import 'package:app_todo_lovepeople/view/widgets/textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Signup extends StatefulWidget {
   const Signup({super.key});
@@ -21,21 +22,8 @@ class _SignupState extends State<Signup> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
-  void registerUser(TextEditingController name, TextEditingController email,
-      TextEditingController password) {
-    context
-        .read<UserPresenter>()
-        .registerUser(nameController.text, emailController.text,
-            passwordController.text)
-        .then((value) => {
-              print(value)
-            })
-        .catchError((onError) {
-      print(onError);
-    });
-  }
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +48,7 @@ class _SignupState extends State<Signup> {
                   height: 20,
                 ),
                 Textformfield(
+                  onChanged: value.setUsername,
                   controller: nameController,
                   message: 'Nome obrigatório',
                   label: 'Nome',
@@ -67,6 +56,7 @@ class _SignupState extends State<Signup> {
                   obscure: false,
                 ),
                 Textformfield(
+                  onChanged: value.setNumberEmailCpf,
                   controller: emailController,
                   message: 'Email obrigatório',
                   label: 'Número de telefone, email ou CPF',
@@ -74,6 +64,7 @@ class _SignupState extends State<Signup> {
                   obscure: false,
                 ),
                 Textformfield(
+                    onChanged: value.setPassword,
                     controller: passwordController,
                     message: 'Senha obrigatória',
                     label: 'Senha',
@@ -95,6 +86,7 @@ class _SignupState extends State<Signup> {
                       ),
                     )),
                 Textformfield(
+                    onChanged: value.setConfirmPassword,
                     controller: confirmPasswordController,
                     message: 'Confirme a senha',
                     label: 'Confirme a senha',
@@ -116,16 +108,41 @@ class _SignupState extends State<Signup> {
                             : Icons.visibility_off),
                       ),
                     )),
+                const SizedBox(
+                  height: 20,
+                ),
                 ElevatedButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        registerUser(nameController, emailController,
-                            passwordController);
-
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: ((context) {
-                          return const SignupSuccsess();
-                        })));
+                    onPressed: () async {
+                      value.validateSignUp();
+                      SharedPreferences sharedPreferences =
+                          await SharedPreferences.getInstance();
+                      if (value.isSignUpValid &&
+                          _formKey.currentState!.validate()) {
+                        var res = await value.registerUser(nameController.text,
+                            emailController.text, passwordController.text);
+                        res.whenComplete(() {
+                          bool? isAuth = sharedPreferences.getBool('isAuth');
+                          if (isAuth != null && isAuth) {
+                            Navigator.of(context)
+                                .push(MaterialPageRoute(builder: ((context) {
+                              return const SignupSuccsess();
+                            })));
+                          }
+                        });
+                      } else {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text(
+                            'Dados inválidos',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Color(0xff3101B9),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          duration: Duration(seconds: 3),
+                          backgroundColor: Colors.white,
+                        ));
                       }
                     },
                     style: ElevatedButton.styleFrom(

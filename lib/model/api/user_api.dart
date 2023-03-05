@@ -1,27 +1,40 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UserApi{
+class UserApi {
   var client = http.Client();
-  
+
+  String name='';
+  String email='';
+  String password='';
   String baseUrl = 'https://lovepeople-todo.onrender.com/api/';
-  Future<String?> register(String nome, String email, String senha) {
+  Future register() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Uri uri = Uri.parse('${baseUrl}auth/local/register');
     return http.post(
       uri,
       body: {
-        "username": nome,
+        "username": name,
         "email": email,
-        "password": senha,
+        "password": password,
       },
-    ).then((value) {
+    ).then((value) async {
       if (value.statusCode == 200) {
         Map json = jsonDecode(value.body);
+        await sharedPreferences.setString('jwt', json['jwt']);
+        await sharedPreferences.setBool('isAuth', true);
         return json['jwt'];
       } else {
-        return value.body;
+        await sharedPreferences.setBool('isAuth', false);
+       return value.body;
       }
     });
+  }
+}
+class SignUpBoolValue {
+  bool value = true;
+  toggle(signUpBoolValue) {
+    value = !value;
   }
 }

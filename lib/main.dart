@@ -18,25 +18,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers:[
-        Provider(create: (_)=>UserApi()),
-        ChangeNotifierProvider(create: (context)=>UserPresenter(context.read()))
-      ],
-      child:MaterialApp(
-        title: 'ToDo Lovepeople',
-        debugShowCheckedModeBanner: false,
-        initialRoute: 'signup',
-        routes: {
-          'todo_register': (context) => const TodoRegister(),
-          'signup': (context) => const Signup(),
-          'succsess': (context) => const SignupSuccsess(),
-          'todo_list':(context)=> const TaskList(),
-          'login':(context)=> const Login(),
-        },
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const TaskList())
-    );
+        providers: [
+          Provider(create: (_) => UserApi()),
+          ChangeNotifierProvider(
+              create: (context) => UserPresenter(context.read()))
+        ],
+        child: MaterialApp(
+            title: 'ToDo Lovepeople',
+            debugShowCheckedModeBanner: false,
+            initialRoute: 'signup',
+            routes: {
+              'todo_register': (context) => const TodoRegister(),
+              'signup': (context) => const Signup(),
+              'succsess': (context) => const SignupSuccsess(),
+              'todo_list': (context) => const TaskList(),
+              'login': (context) => const Login(),
+            },
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: const TaskList()));
   }
 }
