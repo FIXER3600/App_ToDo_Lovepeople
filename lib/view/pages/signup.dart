@@ -116,19 +116,13 @@ class _SignupState extends State<Signup> {
                       value.validateSignUp();
                       SharedPreferences sharedPreferences =
                           await SharedPreferences.getInstance();
-                      if (value.isSignUpValid &&
-                          _formKey.currentState!.validate()) {
-                        var res = await value.registerUser(nameController.text,
-                            emailController.text, passwordController.text);
-                        res.whenComplete(() {
                           bool? isAuth = sharedPreferences.getBool('isAuth');
-                          if (isAuth != null && isAuth) {
-                            Navigator.of(context)
-                                .push(MaterialPageRoute(builder: ((context) {
-                              return const SignupSuccsess();
-                            })));
-                          }
-                        });
+                          await value.registerUser(nameController.text,
+                            emailController.text, passwordController.text);
+                      if ((value.isSignUpValid &&
+                          _formKey.currentState!.validate()) &&
+                          isAuth != null && isAuth) {
+                        Navigator.pushNamed(context, 'succsess');
                       } else {
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(

@@ -9,7 +9,7 @@ class UserApi {
   String email='';
   String password='';
   String baseUrl = 'https://lovepeople-todo.onrender.com/api/';
-  Future register() async {
+  Future<String> register() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Uri uri = Uri.parse('${baseUrl}auth/local/register');
     return http.post(

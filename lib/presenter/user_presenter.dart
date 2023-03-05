@@ -78,7 +78,7 @@ class UserPresenter extends ChangeNotifier {
 
   Future registerUser(String nome, String email, String senha) async {
    
-      Future response = await _userApi.register();
+      String response = await _userApi.register();
       notifyListeners();
       return response;
   
