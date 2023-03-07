@@ -14,7 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  UserPresenter userPresenter = UserPresenter();
+  //UserPresenter userPresenter = UserPresenter();
 
   final bool _isObscurePassword = true;
   final bool _isObscureConfirmPassword = true;
@@ -24,10 +24,10 @@ class _LoginState extends State<Login> {
 
   final _formKey = GlobalKey<FormState>();
 
-  void loginUser(TextEditingController emailController,
-      TextEditingController passwordController) {
-    userPresenter.loginUser(emailController.text, passwordController.text);
-  }
+  //void loginUser(TextEditingController emailController,
+  //TextEditingController passwordController) {
+  //userPresenter.loginUser(emailController.text, passwordController.text);
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +137,7 @@ class _LoginState extends State<Login> {
             ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    loginUser(emailController, passwordController);
+                    //loginUser(emailController, passwordController);
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: ((context) {
                       return const TaskList();
