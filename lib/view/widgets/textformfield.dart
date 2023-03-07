@@ -7,6 +7,7 @@ class Textformfield extends StatelessWidget {
   final double? height;
   final Widget? sufix;
   final bool obscure;
+  final Function(String)? onChanged;
   const Textformfield(
       {super.key,
       required this.controller,
@@ -14,6 +15,7 @@ class Textformfield extends StatelessWidget {
       required this.label,
       required this.height,
       required this.obscure,
+      this.onChanged,
       this.sufix});
 
   @override
@@ -24,6 +26,7 @@ class Textformfield extends StatelessWidget {
           width: 310,
           height: 40,
           child: TextFormField(
+            onChanged: onChanged,
             controller: controller,
             obscureText: obscure,
             style: const TextStyle(
@@ -32,7 +35,6 @@ class Textformfield extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Tahoma'),
             decoration: InputDecoration(
-              
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
