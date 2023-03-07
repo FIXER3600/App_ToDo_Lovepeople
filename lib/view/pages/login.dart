@@ -14,12 +14,10 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final bool _isObscurePassword = true;
-  final bool _isObscureConfirmPassword = true;
-  final TextEditingController nameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
