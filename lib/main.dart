@@ -1,4 +1,6 @@
+import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 import 'package:app_todo_lovepeople/model/api/user_api.dart';
+import 'package:app_todo_lovepeople/presenter/todo_register_presenter.dart';
 import 'package:app_todo_lovepeople/presenter/user_presenter.dart';
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
 import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
@@ -21,8 +23,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           Provider(create: (_) => UserApi()),
+          Provider(create: (_) => TodoApi()),
           ChangeNotifierProvider(
-              create: (context) => UserPresenter(context.read()))
+              create: (context) => UserPresenter(context.read())),
+          ChangeNotifierProvider(
+              create: (context) => TodoRegisterPresenter(context.read())),
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',
