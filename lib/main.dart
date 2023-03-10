@@ -1,4 +1,3 @@
-import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 import 'package:app_todo_lovepeople/model/api/user_api.dart';
 import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:app_todo_lovepeople/presenter/user_presenter.dart';
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           Provider<UserApi>(create: (_) => UserApi()),
-          Provider<TodoPresenter>(create: (_) => TodoPresenter()),
+          Provider<TodoPresenter>(create: (_) => TodoPresenter(context.read())),
           ChangeNotifierProvider(
               create: (context) => UserPresenter(context.read())),
           ChangeNotifierProvider(
@@ -32,14 +31,11 @@ class MyApp extends StatelessWidget {
               context.read(),
             ),
           ),
-
-              create: (context) => TodoPresenter(context.read())),
-
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',
             debugShowCheckedModeBanner: false,
-            initialRoute: 'todo_list',
+            initialRoute: 'login',
             routes: {
               'login': (context) => const Login(),
               'todo_register': (context) => const TodoRegister(),
