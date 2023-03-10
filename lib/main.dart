@@ -1,4 +1,5 @@
 import 'package:app_todo_lovepeople/model/api/user_api.dart';
+import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:app_todo_lovepeople/presenter/user_presenter.dart';
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
 import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
@@ -22,12 +23,14 @@ class MyApp extends StatelessWidget {
         providers: [
           Provider(create: (_) => UserApi()),
           ChangeNotifierProvider(
-              create: (context) => UserPresenter(context.read()))
+              create: (context) => UserPresenter(context.read())),
+          ChangeNotifierProvider(
+              create: (context) => TodoPresenter(context.read())),
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',
             debugShowCheckedModeBanner: false,
-            initialRoute: 'signup',
+            initialRoute: 'todo_list',
             routes: {
               'todo_register': (context) => const TodoRegister(),
               'signup': (context) => const Signup(),
