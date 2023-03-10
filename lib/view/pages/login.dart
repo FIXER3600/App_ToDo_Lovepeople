@@ -141,17 +141,19 @@ class _LoginState extends State<Login> {
                 height: 35,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const TaskList()));
-                    /*presenter
-                        .login(_emailController.text,
-                         _passwordController.text,
-                            sucess: () {
-                      print('SUCESSO');
-                    }, failure: () {
-                      print('falha ao conectar');
-                    });*/
+                  onPressed: () async {
+                    await presenter
+                        .login(
+                          _emailController.text,
+                          _passwordController.text,
+                        )
+                        .whenComplete(
+                          () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const TaskList(),
+                            ),
+                          ),
+                        );
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.only(

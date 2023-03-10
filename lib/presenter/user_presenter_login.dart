@@ -8,16 +8,10 @@ class UserPresenterLogin extends ChangeNotifier {
 
   UserPresenterLogin(this.userApi);
 
-  void login(String email, String senha,
-      {VoidCallback? sucess, VoidCallback? failure}) {
-    userApi.login(email, senha).then((value) async {
-      if (value != null) {
-        var prefs = await SharedPreferences.getInstance();
-        prefs.setString(UserApi.KEY_TOKEN, value);
-        sucess?.call();
-      }
-    }).catchError((e) {
-      failure?.call();
-    });
+  Future login(
+    String email,
+    String senha,
+  ) {
+    return userApi.login(email, senha);
   }
 }
