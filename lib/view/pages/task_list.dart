@@ -23,6 +23,18 @@ List<Todo> todoList = <Todo>[
           title: 'Desenvovimento de Software',
           description:
               'entregar pelo menos um aplicativo por semana na lovepeople')),
+  Todo(
+      attributes: Attributes(
+          color: '#FFF2CC',
+          title: 'Desenvovimento de Software',
+          description:
+              'entregar pelo menos um aplicativo por semana na lovepeople')),
+  Todo(
+      attributes: Attributes(
+          color: '#FFF2CC',
+          title: 'Desenvovimento de Software',
+          description:
+              'entregar pelo menos um aplicativo por semana na lovepeople')),
 ];
 
 class TaskList extends StatefulWidget {
@@ -56,73 +68,78 @@ class _TaskListState extends State<TaskList> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(169, 1, 247, 1),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // LOGO
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(3),
-                    width: size.width * 0.2,
-                    height: size.width * 0.2,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(80),
-                      ),
-                    ),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Image.asset(
-                        'lib/view/assets/images/logo.png',
-                        scale: 9,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              // TITULO
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Suas Listagens',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ],
-              ),
-              // SEACH BOX
-
-              searchBox(),
-
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: todoList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return box(
-                      todoList[index].attributes?.color ?? '',
-                      todoList[index].attributes?.title ?? '',
-                      todoList[index].attributes?.description ?? '');
-                },
-              ),
-
-              Align(
-                //d
-                alignment: Alignment.bottomCenter,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).pushNamed('todo_register');
-                  },
-                  child: const Icon(
-                    Icons.add,
-                    size: 75,
+        child: Column(
+          children: [
+            // LOGO
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(3),
+                  width: size.width * 0.2,
+                  height: size.width * 0.2,
+                  decoration: const BoxDecoration(
                     color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(80),
+                    ),
+                  ),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Image.asset(
+                      'lib/view/assets/images/logo.png',
+                      scale: 9,
+                    ),
                   ),
                 ),
-              )
-            ],
-          ),
+              ],
+            ),
+            // TITULO
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Suas Listagens',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ],
+            ),
+            // SEACH BOX
+
+            searchBox(),
+
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: axisDirectionToAxis(AxisDirection.down),
+                child: SizedBox(
+                  height: size.height * 0.9,
+                  child: ListView.builder(
+                    itemCount: todoList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return box(
+                          todoList[index].attributes?.color ?? '',
+                          todoList[index].attributes?.title ?? '',
+                          todoList[index].attributes?.description ?? '');
+                    },
+                  ),
+                ),
+              ),
+            ),
+
+            Align(
+              //d
+              alignment: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('todo_register');
+                },
+                child: const Icon(
+                  Icons.add,
+                  size: 75,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

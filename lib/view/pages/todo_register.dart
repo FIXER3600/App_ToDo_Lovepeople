@@ -196,8 +196,23 @@ class _TodoRegisterState extends State<TodoRegister> {
                 ),
               ),
             ),
+
+          ),
+          const SizedBox(
+            height: 90,
+          ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            InkWell(
+              onTap: () {},
+              child: const Icon(
+                Icons.clear_rounded,
+                size: 80,
+                color: Colors.white,
+              ),
+
             const SizedBox(
               height: 90,
+
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               InkWell(
