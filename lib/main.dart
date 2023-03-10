@@ -1,7 +1,9 @@
 import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 import 'package:app_todo_lovepeople/model/api/user_api.dart';
 import 'package:app_todo_lovepeople/presenter/todo_register_presenter.dart';
+import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:app_todo_lovepeople/presenter/user_presenter.dart';
+import 'package:app_todo_lovepeople/presenter/user_presenter_login.dart';
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
 import 'package:app_todo_lovepeople/view/pages/signup_succsess.dart';
 import 'package:app_todo_lovepeople/view/pages/task_list.dart';
@@ -28,17 +30,28 @@ class MyApp extends StatelessWidget {
               create: (context) => UserPresenter(context.read())),
           ChangeNotifierProvider(
               create: (context) => TodoRegisterPresenter(context.read())),
+
+          Provider<UserApi>(create: (_) => UserApi()),
+          Provider<TodoPresenter>(create: (_) => TodoPresenter(context.read())),
+          ChangeNotifierProvider(
+              create: (context) => UserPresenter(context.read())),
+          ChangeNotifierProvider(
+            create: (context) => UserPresenterLogin(
+              context.read(),
+            ),
+          ),
+
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',
             debugShowCheckedModeBanner: false,
-            initialRoute: 'signup',
+            initialRoute: 'login',
             routes: {
+              'login': (context) => const Login(),
               'todo_register': (context) => const TodoRegister(),
               'signup': (context) => const Signup(),
               'succsess': (context) => const SignupSuccsess(),
               'todo_list': (context) => const TaskList(),
-              'login': (context) => const Login(),
             },
             theme: ThemeData(
               primarySwatch: Colors.blue,
