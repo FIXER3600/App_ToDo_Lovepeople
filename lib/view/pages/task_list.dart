@@ -1,3 +1,5 @@
+import 'package:app_todo_lovepeople/model/api/todo_api.dart';
+import 'package:app_todo_lovepeople/model/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +10,8 @@ List<String> listaTarefas = [
   'TESTE'
 ];
 
+List<Todo> todoList = <Todo>[];
+
 class TaskList extends StatefulWidget {
   const TaskList({super.key});
 
@@ -17,13 +21,21 @@ class TaskList extends StatefulWidget {
 
 class _TaskListState extends State<TaskList> {
   TextEditingController? _textEditingController = TextEditingController();
+  TodoPresenter todoPresenter = TodoPresenter();
   setFullScreen() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
   }
 
   @override
+  void initState() {
+    super.initState();
+    todoPresenter.getList();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     String tarefa = '';
 
     setFullScreen();
@@ -37,8 +49,8 @@ class _TaskListState extends State<TaskList> {
             children: [
               Container(
                 padding: const EdgeInsets.all(3),
-                width: 80,
-                height: 80,
+                width: size.width * 0.2,
+                height: size.width * 0.2,
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -48,7 +60,7 @@ class _TaskListState extends State<TaskList> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: Image.asset(
-                    'images/logo.png',
+                    'lib/view/assets/images/logo.png',
                     scale: 9,
                   ),
                 ),
@@ -66,37 +78,38 @@ class _TaskListState extends State<TaskList> {
             ],
           ),
           // SEACH BOX
-          Container(
-            width: MediaQuery.of(context).size.width * 0.94,
-            padding: const EdgeInsets.only(top: 30, bottom: 15),
-            child: const TextField(
-              decoration: InputDecoration(
-                  labelText: 'Busque palavras-chave',
-                  suffixIcon: Icon(Icons.search),
-                  enabledBorder: UnderlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
-                  filled: true,
-                  fillColor: Colors.white),
-            ),
-          ),
+
+          searchBox(),
 
           // caixa de texto
-          Column(
+          /* Column(
             children: [
               box(const Color.fromRGBO(255, 242, 204, 1), listaTarefas[0]),
               box(const Color.fromRGBO(199, 255, 203, 1), listaTarefas[1]),
               box(const Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
+              box(const Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
+              box(const Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
             ],
-          ),
+          ), */
+          // ListView.builder(
+          //   itemCount: 1,
+          //   itemBuilder: (BuildContext context, int index) {
+          //     return box(todoList[index].attributes.color);
+          //   },
+          // ),
 
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pushNamed('todo_register');
-            },
-            child: const Icon(
-              Icons.add,
-              size: 75,
-              color: Colors.white,
+          Align(
+            //d
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).pushNamed('todo_register');
+              },
+              child: const Icon(
+                Icons.add,
+                size: 75,
+                color: Colors.white,
+              ),
             ),
           )
         ],
@@ -104,7 +117,7 @@ class _TaskListState extends State<TaskList> {
     );
   }
 
-  Widget box(Color cor, String texto) {
+  Widget box(String cor, String texto) {
     return Column(
       children: [
         Container(
@@ -112,18 +125,41 @@ class _TaskListState extends State<TaskList> {
           width: MediaQuery.of(context).size.width * 0.94,
           height: 100,
           decoration: BoxDecoration(
-            color: cor,
+            // color: Color(0xff.$cor),
             borderRadius: const BorderRadius.all(
               Radius.circular(10),
             ),
           ),
-          child: Text(texto),
+          child: Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Text(texto),
+              Padding(padding: EdgeInsets.all(8)),
+              Icon(Icons.delete)
+            ],
+          ),
         ),
         const SizedBox(
           height: 15,
           //width: 15,
         ),
       ],
+    );
+  }
+
+  Widget searchBox() {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.94,
+      padding: const EdgeInsets.only(top: 30, bottom: 15),
+      child: const TextField(
+        decoration: InputDecoration(
+            labelText: 'Busque palavras-chave',
+            suffixIcon: Icon(Icons.search),
+            enabledBorder: UnderlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15))),
+            filled: true,
+            fillColor: Colors.white),
+      ),
     );
   }
 }
