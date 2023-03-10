@@ -1,5 +1,6 @@
 import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 import 'package:app_todo_lovepeople/model/api/user_api.dart';
+import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:app_todo_lovepeople/presenter/user_presenter.dart';
 import 'package:app_todo_lovepeople/presenter/user_presenter_login.dart';
 import 'package:app_todo_lovepeople/view/pages/signup.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
               context.read(),
             ),
           ),
+
+              create: (context) => TodoPresenter(context.read())),
+
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',
