@@ -1,28 +1,34 @@
 import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 import 'package:app_todo_lovepeople/model/todo.dart';
+import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-List<String> listaTarefas = [
-  '''limpar a casa Duis voluptate laboris veniam laboris Lorem esse excepteur quis id aute labore quis. Labore irure qui labore quis et duis proident amet officia. Cupidatat eu aliqua veniam ea mollit qui elit enim occaecat.''',
-  '''pintar a casa Consectetur pariatur labore in nulla nulla Lorem cillum aliqua irure eu tempor commodo deserunt veniam. Eu occaecat  Do consectetur Lorem laborum tempor est sit aliqua duis mollit magna nostrud. Eu non exercitation esse et exercitation magna.''',
-  '''arrumar a casa Sunt culpa dolore dolore proident aliqua. Deserunt .''',
-  'TESTE'
-];
 
 List<Todo> todoList = <Todo>[
   Todo(
       attributes: Attributes(
-          color: '#b7a800', title: 'titulo', description: 'descricao')),
+          color: '#FFF2CC',
+          title: 'Atividade Fisica',
+          description:
+              'atividade de caminhar todos os dias, 90 minutos de natação, pedalar 250 km, 180 minuntos de musculação leve')),
   Todo(
       attributes: Attributes(
-          color: '#b7a800', title: 'titulo', description: 'descricao')),
+          color: '#C7FFCB',
+          title: 'Faculdade',
+          description:
+              'Estudar para logica de programação, Orientação a Objeto, banco de dados, Arquiterura de software')),
   Todo(
       attributes: Attributes(
-          color: '#b7a800', title: 'titulo', description: 'descricao')),
+          color: '#E8C5FF',
+          title: 'Viagem',
+          description:
+              'Ir ao litoral duas vezes por mes, fazer pelo menos uma viagem internacional por bimestre')),
   Todo(
       attributes: Attributes(
-          color: '#b7a800', title: 'titulo', description: 'descricao')),
+          color: '#FFF2CC',
+          title: 'Desenvovimento de Software',
+          description:
+              'entregar pelo menos um aplicativo por semana na lovepeople')),
 ];
 
 class TaskList extends StatefulWidget {
@@ -34,20 +40,16 @@ class TaskList extends StatefulWidget {
 
 class _TaskListState extends State<TaskList> {
   TextEditingController? _textEditingController = TextEditingController();
-  TodoPresenter todoPresenter = TodoPresenter();
+  TodoPresenter todoPresenter = TodoPresenter(TodoApi());
   setFullScreen() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive
-    
-    
-    
-    ,
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
   }
 
   @override
   void initState() {
     super.initState();
-    todoPresenter.getList();
+    todoPresenter.getTODOlist();
   }
 
   @override
@@ -100,16 +102,6 @@ class _TaskListState extends State<TaskList> {
 
               searchBox(),
 
-              // caixa de texto
-              /* Column(
-                children: [
-                  box(const Color.fromRGBO(255, 242, 204, 1), listaTarefas[0]),
-                  box(const Color.fromRGBO(199, 255, 203, 1), listaTarefas[1]),
-                  box(const Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
-                  box(const Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
-                  box(const Color.fromRGBO(232, 197, 255, 1), listaTarefas[2]),
-                ],
-              ), */
               ListView.builder(
                 shrinkWrap: true,
                 itemCount: todoList.length,
@@ -149,9 +141,9 @@ class _TaskListState extends State<TaskList> {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(6.0),
           width: size.width * 0.94,
-          height: 100,
+          height: size.height * 0.20,
           decoration: BoxDecoration(
             color: Color(int.parse('0xff$corString')),
             borderRadius: const BorderRadius.all(
@@ -165,19 +157,41 @@ class _TaskListState extends State<TaskList> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: size.width * 0.05),
-                    child: Text(titulo),
+                    padding: EdgeInsets.only(left: size.width * 0.01),
+                    child: Text(
+                      titulo,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                          color: Color.fromARGB(255, 107, 4, 125)),
+                    ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: size.width * 0.02),
+                    padding: EdgeInsets.only(right: size.width * 0.01),
                     child: InkWell(
                         onTap: () => showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
+                                  backgroundColor: Colors.white,
                                   content: Container(
-                                    height: 100,
-                                    width: 100,
-                                    color: Colors.amber,
+                                    child: Column(
+                                      children: [
+                                        Text('Deseja deletar este item?'),
+                                        Text(
+                                            '"******" será removida a lixeira'),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text('Confirmar'),
+                                            Text('Cancelar'),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    height: size.height * 0.10,
+                                    width: size.width * 0.10,
+                                    color: Color.fromARGB(255, 234, 233, 228),
                                   ),
                                 )),
                         child: const Icon(Icons.delete)),
@@ -186,8 +200,11 @@ class _TaskListState extends State<TaskList> {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    left: size.width * 0.05, top: size.height * 0.01),
-                child: Text(descricao),
+                    left: size.width * 0.01, top: size.height * 0.001),
+                child: Text(
+                  descricao,
+                  style: TextStyle(fontSize: 20),
+                ),
               ),
             ],
           ),
@@ -207,7 +224,10 @@ class _TaskListState extends State<TaskList> {
       child: const TextField(
         decoration: InputDecoration(
             labelText: 'Busque palavras-chave',
-            suffixIcon: Icon(Icons.search),
+            suffixIcon: Icon(
+              Icons.search,
+              size: 40,
+            ),
             enabledBorder: UnderlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15))),
             filled: true,
