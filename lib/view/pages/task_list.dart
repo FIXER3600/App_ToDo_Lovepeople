@@ -19,12 +19,6 @@ List<Todo> todoList = <Todo>[
               'Estudar para logica de programação, Orientação a Objeto, banco de dados, Arquiterura de software')),
   Todo(
       attributes: Attributes(
-          color: '#E8C5FF',
-          title: 'Viagem',
-          description:
-              'Ir ao litoral duas vezes por mes, fazer pelo menos uma viagem internacional por bimestre')),
-  Todo(
-      attributes: Attributes(
           color: '#FFF2CC',
           title: 'Desenvovimento de Software',
           description:
@@ -160,7 +154,7 @@ class _TaskListState extends State<TaskList> {
                     padding: EdgeInsets.only(left: size.width * 0.01),
                     child: Text(
                       titulo,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
                           color: Color.fromARGB(255, 107, 4, 125)),
@@ -176,13 +170,13 @@ class _TaskListState extends State<TaskList> {
                                   content: Container(
                                     child: Column(
                                       children: [
-                                        Text('Deseja deletar este item?'),
-                                        Text(
+                                        const Text('Deseja deletar este item?'),
+                                        const Text(
                                             '"******" será removida a lixeira'),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
-                                          children: [
+                                          children: const [
                                             Text('Confirmar'),
                                             Text('Cancelar'),
                                           ],
@@ -191,7 +185,8 @@ class _TaskListState extends State<TaskList> {
                                     ),
                                     height: size.height * 0.10,
                                     width: size.width * 0.10,
-                                    color: Color.fromARGB(255, 234, 233, 228),
+                                    color: const Color.fromARGB(
+                                        255, 234, 233, 228),
                                   ),
                                 )),
                         child: const Icon(Icons.delete)),
@@ -203,7 +198,7 @@ class _TaskListState extends State<TaskList> {
                     left: size.width * 0.01, top: size.height * 0.001),
                 child: Text(
                   descricao,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
               ),
             ],
