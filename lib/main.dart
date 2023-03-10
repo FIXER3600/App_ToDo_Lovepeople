@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             title: 'ToDo Lovepeople',
             debugShowCheckedModeBanner: false,
-            initialRoute: 'todo_register',
+            initialRoute: 'signup',
             routes: {
               'todo_register': (context) => const TodoRegister(),
               'signup': (context) => const Signup(),
