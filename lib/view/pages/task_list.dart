@@ -36,7 +36,11 @@ class _TaskListState extends State<TaskList> {
   TextEditingController? _textEditingController = TextEditingController();
   TodoPresenter todoPresenter = TodoPresenter();
   setFullScreen() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive
+    
+    
+    
+    ,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
   }
 
