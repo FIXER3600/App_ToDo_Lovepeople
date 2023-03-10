@@ -62,12 +62,22 @@ class _TodoRegisterState extends State<TodoRegister> {
           const SizedBox(
             height: 30,
           ),
-          Textformfield(
-            controller: titulotarefa,
-            message: '',
-            label: 'Título da Tarefa',
-            height: 10,
-            obscure: false,
+          Padding(
+            padding: const EdgeInsets.only(left: 42.0, right: 42.0),
+            child: TextField(
+              controller: titulotarefa,
+              keyboardType: TextInputType.multiline,
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: "Título da Tarefa",
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  )),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
           ),
           Padding(
             padding: const EdgeInsets.only(left: 42.0, right: 42.0),
@@ -80,74 +90,126 @@ class _TodoRegisterState extends State<TodoRegister> {
                   fillColor: Colors.white,
                   hintText: "Escreva uma descrição para sua tarefa.",
                   enabledBorder: OutlineInputBorder(
-
-                    borderRadius: BorderRadius.circular(30),
-
-                    
-
+                    borderRadius: BorderRadius.circular(20),
                   )),
             ),
           ),
           const SizedBox(
             height: 40,
           ),
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _constroibotao('', color: const Color(0xFFFFF2CC)),
-                  _constroibotao('', color: const Color(0XFFFFD9F0)),
-                  _constroibotao('', color: const Color(0XFFE8C5FF)),
-                  _constroibotao('', color: const Color(0XFFCAFBFF)),
-                  _constroibotao('', color: const Color(0XFFE3FFE6)),
-                ],
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 48.0,
+              right: 48.0,
+            ),
+            child: Container(
+              margin: EdgeInsets.all(7.0),
+              child: SizedBox(
+                height: 43,
+                width: 350,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFF2CC),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0XFFFFD9F0),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0XFFE8C5FF),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0XFFCAFBFF),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: const Color(0XFFE3FFE6),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
           const SizedBox(
             height: 90,
           ),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Icon(
-                  Icons.clear_rounded,
-                  size: 80,
-                  color: Colors.white,
-                ),
-                Icon(
-                  Icons.check_rounded,
-                  size: 80,
-                  color: Colors.white,
-                ),
-              ]),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            InkWell(
+              onTap: () {},
+              child: Icon(
+                Icons.clear_rounded,
+                size: 80,
+                color: Colors.white,
+              ),
+            ),
+            InkWell(
+              onTap: () {},
+              child: Icon(
+                Icons.check_rounded,
+                size: 80,
+                color: Colors.white,
+              ),
+            ),
+          ]),
         ]),
       ),
     );
   }
 }
 
-Widget _constroibotao(String text, {Color color = Colors.grey}) {
-  return SizedBox(
-    width: 40,
-    height: 60,
-    child: ElevatedButton(
-      onPressed: () {},
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all(
-          const CircleBorder(),
-        ),
-        backgroundColor: MaterialStateProperty.all(color),
-      ),
-      child: const Text(""),
-    ),
-  );
-}
+
 
 //GestureDetector(
          // onTap: () {

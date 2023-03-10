@@ -4,7 +4,7 @@ import 'package:app_todo_lovepeople/model/todo.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class TodoPresenter {
+class TodoApi {
   String baseUrl = 'https://lovepeople-todo.onrender.com/api/';
 
   Future<List<Todo>> getList() async {
