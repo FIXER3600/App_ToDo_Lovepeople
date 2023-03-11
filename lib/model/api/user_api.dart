@@ -38,6 +38,7 @@ class UserApi {
   Future<String?> login(String email, String senha) async {
     Uri uri = Uri.parse('${baseUrl}auth/local');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String erro = 'Email ou senha inválido.';
     return http.post(
       uri,
       body: {
@@ -53,7 +54,7 @@ class UserApi {
         print(token);
         return json['jwt'];
       } else {
-        return null;
+        return erro;
       }
     });
   }
