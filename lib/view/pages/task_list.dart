@@ -3,39 +3,40 @@ import 'package:app_todo_lovepeople/model/todo.dart';
 import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
-List<Todo> todoList = <Todo>[
-  Todo(
-      attributes: Attributes(
-          color: '#FFF2CC',
-          title: 'Atividade Fisica',
-          description:
-              'atividade de caminhar todos os dias, 90 minutos de natação, pedalar 250 km, 180 minuntos de musculação leve')),
-  Todo(
-      attributes: Attributes(
-          color: '#C7FFCB',
-          title: 'Faculdade',
-          description:
-              'Estudar para logica de programação, Orientação a Objeto, banco de dados, Arquiterura de software')),
-  Todo(
-      attributes: Attributes(
-          color: '#FFF2CC',
-          title: 'Desenvovimento de Software',
-          description:
-              'entregar pelo menos um aplicativo por semana na lovepeople')),
-  Todo(
-      attributes: Attributes(
-          color: '#FFF2CC',
-          title: 'Desenvovimento de Software',
-          description:
-              'entregar pelo menos um aplicativo por semana na lovepeople')),
-  Todo(
-      attributes: Attributes(
-          color: '#FFF2CC',
-          title: 'Desenvovimento de Software',
-          description:
-              'entregar pelo menos um aplicativo por semana na lovepeople')),
-];
+// List<Todo> todoList = <Todo>[
+//   Todo(
+//       attributes: Attributes(
+//           color: '#FFF2CC',
+//           title: 'Atividade Fisica',
+//           description:
+//               'atividade de caminhar todos os dias, 90 minutos de natação, pedalar 250 km, 180 minuntos de musculação leve')),
+//   Todo(
+//       attributes: Attributes(
+//           color: '#C7FFCB',
+//           title: 'Faculdade',
+//           description:
+//               'Estudar para logica de programação, Orientação a Objeto, banco de dados, Arquiterura de software')),
+//   Todo(
+//       attributes: Attributes(
+//           color: '#FFF2CC',
+//           title: 'Desenvovimento de Software',
+//           description:
+//               'entregar pelo menos um aplicativo por semana na lovepeople')),
+//   Todo(
+//       attributes: Attributes(
+//           color: '#FFF2CC',
+//           title: 'Desenvovimento de Software',
+//           description:
+//               'entregar pelo menos um aplicativo por semana na lovepeople')),
+//   Todo(
+//       attributes: Attributes(
+//           color: '#FFF2CC',
+//           title: 'Desenvovimento de Software',
+//           description:
+//               'entregar pelo menos um aplicativo por semana na lovepeople')),
+// ];
 
 class TaskList extends StatefulWidget {
   const TaskList({super.key});
@@ -60,6 +61,7 @@ class _TaskListState extends State<TaskList> {
 
   @override
   Widget build(BuildContext context) {
+    context.read<TodoPresenter>().getTODOlist();
     final size = MediaQuery.of(context).size;
     String tarefa = '';
 
@@ -113,7 +115,7 @@ class _TaskListState extends State<TaskList> {
                 child: SizedBox(
                   height: size.height * 0.9,
                   child: ListView.builder(
-                    itemCount: todoList.length,
+                    //itemCount: todoList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return box(
                           todoList[index].attributes?.color ?? '',
@@ -180,55 +182,71 @@ class _TaskListState extends State<TaskList> {
                   Padding(
                     padding: EdgeInsets.only(right: size.width * 0.01),
                     child: InkWell(
-                        onTap: () => showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
-                                  content: SizedBox(
-                                    height: size.height * 0.1,
-                                    width: size.width * 1.0,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Text('Deseja deletar este item?',
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20,
-                                                color: Color.fromARGB(
-                                                    255, 107, 4, 125))),
-                                        const Text(
-                                            '"******" será removida a lixeira',
-                                            style: const TextStyle(
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
+                          content: SizedBox(
+                            height: size.height * 0.1,
+                            width: size.width * 1.0,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text('Deseja deletar este item?',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                        color:
+                                            Color.fromARGB(255, 107, 4, 125))),
+                                const Text('"******" será removida a lixeira',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                        color:
+                                            Color.fromARGB(255, 107, 4, 125))),
+                                const SizedBox(height: 22),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                        todoPresenter.delete(
+                                          item.id?.toString() ?? '',
+                                        );
+                                        return print('confirmar');
+                                      },
+                                      child: GestureDetector(
+                                        child: const Text('Confirmar',
+                                            style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 15,
                                                 color: Color.fromARGB(
                                                     255, 107, 4, 125))),
-                                        SizedBox(height: 22),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: const [
-                                            Text('Confirmar',
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
-                                                    color: Color.fromARGB(
-                                                        255, 107, 4, 125))),
-                                            SizedBox(width: 15),
-                                            Text('Cancelar',
-                                                style: const TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15,
-                                                    color: Color.fromARGB(
-                                                        255, 153, 98, 162))),
-                                          ],
-                                        )
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                )),
-                        child: const Icon(Icons.delete)),
+                                    SizedBox(width: 15),
+                                    GestureDetector(
+                                      onTap: () {
+                                        print('Cancelar');
+                                      },
+                                      child: Text('Cancelar',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                              color: Color.fromARGB(
+                                                  255, 153, 98, 162))),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      child: const Icon(Icons.delete),
+                    ),
                   ),
                 ],
               ),
@@ -268,5 +286,65 @@ class _TaskListState extends State<TaskList> {
             fillColor: Colors.white),
       ),
     );
+  }
+
+  void _delete(BuildContext context, Todo item) {
+    final size = MediaQuery.of(context).size;
+    showDialog(
+        context: context,
+        builder: (context) {
+          return SizedBox(
+            height: size.height * 0.1,
+            width: size.width * 1.0,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Deseja deletar este item?${item.atributes?.title'},
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color.fromARGB(255, 107, 4, 125))),
+                const Text('"******" será removida a lixeira',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Color.fromARGB(255, 107, 4, 125))),
+                const SizedBox(height: 22),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                        todoPresenter.delete(
+                          item.id?.toString() ?? '',
+                        );
+                        return print('confirmar');
+                      },
+                      child: GestureDetector(
+                        child: const Text('Confirmar',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 107, 4, 125))),
+                      ),
+                    ),
+                    SizedBox(width: 15),
+                    GestureDetector(
+                      onTap: () {
+                        print('Cancelar');
+                      },
+                      child: Text('Cancelar',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: Color.fromARGB(255, 153, 98, 162),),),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
