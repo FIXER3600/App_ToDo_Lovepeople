@@ -35,17 +35,22 @@ class UserApi {
     });
   }
 
-  Future<String?> login(String email, String senha) {
+  Future<String?> login(String email, String senha) async {
     Uri uri = Uri.parse('${baseUrl}auth/local');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return http.post(
       uri,
       body: {
         "email": email,
         "password": senha,
       },
-    ).then((value) {
+    ).then((value) async {
       if (value.statusCode == 200) {
         Map json = jsonDecode(value.body);
+        await sharedPreferences.setString('jwt', json['jwt']);
+        await sharedPreferences.setBool('isAuth', true);
+        var token = sharedPreferences.getString('jwt');
+        print(token);
         return json['jwt'];
       } else {
         return null;
