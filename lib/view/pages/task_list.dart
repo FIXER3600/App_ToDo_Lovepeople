@@ -47,7 +47,7 @@ class TaskList extends StatefulWidget {
 
 class _TaskListState extends State<TaskList> {
   TextEditingController? _textEditingController = TextEditingController();
-  TodoPresenter todoPresenter = TodoPresenter(TodoApi());
+
   setFullScreen() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
@@ -56,94 +56,105 @@ class _TaskListState extends State<TaskList> {
   @override
   void initState() {
     super.initState();
-    todoPresenter.getTODOlist();
+    //todoPresenter.getTODOlist();
   }
 
   @override
   Widget build(BuildContext context) {
-    context.read<TodoPresenter>().getTODOlist();
+    context.read<TodoPresenter>;
     final size = MediaQuery.of(context).size;
-    String tarefa = '';
 
     setFullScreen();
 
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(169, 1, 247, 1),
-      body: SafeArea(
-        child: Column(
-          children: [
-            // LOGO
-            Row(
+    return Consumer<TodoPresenter>(
+      builder: (context, controller, child) {
+        return Scaffold(
+          backgroundColor: const Color.fromRGBO(169, 1, 247, 1),
+          body: SafeArea(
+            child: Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(3),
-                  width: size.width * 0.2,
-                  height: size.width * 0.2,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(80),
+                // LOGO
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(3),
+                      width: size.width * 0.2,
+                      height: size.width * 0.2,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(80),
+                        ),
+                      ),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Image.asset(
+                          'lib/view/assets/images/logo.png',
+                          scale: 9,
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Image.asset(
-                      'lib/view/assets/images/logo.png',
-                      scale: 9,
+                  ],
+                ),
+                // TITULO
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      'Suas Listagens',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ],
+                ),
+                // SEACH BOX
+
+                searchBox(),
+
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: axisDirectionToAxis(AxisDirection.down),
+                    child: SizedBox(
+                      height: size.height * 0.9,
+                      child: ListView.builder(
+                        itemCount: controller.todoList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          box(
+                              controller.todoList[index].attributes?.color ??
+                                  '',
+                              controller.todoList[index].attributes?.title ??
+                                  '',
+                              controller.todoList[index].attributes
+                                      ?.description ??
+                                  '');
+                          // return box(
+                          //     todoList[index].attributes?.color ?? '',
+                          //     todoList[index].attributes?.title ?? '',
+                          //     todoList[index].attributes?.description ?? '');
+                        },
+                      ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            // TITULO
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'Suas Listagens',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
-              ],
-            ),
-            // SEACH BOX
 
-            searchBox(),
-
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: axisDirectionToAxis(AxisDirection.down),
-                child: SizedBox(
-                  height: size.height * 0.9,
-                  child: ListView.builder(
-                    //itemCount: todoList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return box(
-                          todoList[index].attributes?.color ?? '',
-                          todoList[index].attributes?.title ?? '',
-                          todoList[index].attributes?.description ?? '');
+                Align(
+                  //d
+                  alignment: Alignment.bottomCenter,
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('todo_register');
                     },
+                    child: const Icon(
+                      Icons.add,
+                      size: 75,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-              ),
+                )
+              ],
             ),
-
-            Align(
-              //d
-              alignment: Alignment.bottomCenter,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pushNamed('todo_register');
-                },
-                child: const Icon(
-                  Icons.add,
-                  size: 75,
-                  color: Colors.white,
-                ),
-              ),
-            )
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -212,9 +223,9 @@ class _TaskListState extends State<TaskList> {
                                     GestureDetector(
                                       onTap: () {
                                         Navigator.pop(context);
-                                        todoPresenter.delete(
-                                          item.id?.toString() ?? '',
-                                        );
+                                        // todoPresenter.delete(
+                                        //   item.id?.toString() ?? '',
+                                        // );
                                         return print('confirmar');
                                       },
                                       child: GestureDetector(
@@ -286,65 +297,5 @@ class _TaskListState extends State<TaskList> {
             fillColor: Colors.white),
       ),
     );
-  }
-
-  void _delete(BuildContext context, Todo item) {
-    final size = MediaQuery.of(context).size;
-    showDialog(
-        context: context,
-        builder: (context) {
-          return SizedBox(
-            height: size.height * 0.1,
-            width: size.width * 1.0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Deseja deletar este item?${item.atributes?.title'},
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromARGB(255, 107, 4, 125))),
-                const Text('"******" será removida a lixeira',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: Color.fromARGB(255, 107, 4, 125))),
-                const SizedBox(height: 22),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                        todoPresenter.delete(
-                          item.id?.toString() ?? '',
-                        );
-                        return print('confirmar');
-                      },
-                      child: GestureDetector(
-                        child: const Text('Confirmar',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Color.fromARGB(255, 107, 4, 125))),
-                      ),
-                    ),
-                    SizedBox(width: 15),
-                    GestureDetector(
-                      onTap: () {
-                        print('Cancelar');
-                      },
-                      child: Text('Cancelar',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: Color.fromARGB(255, 153, 98, 162),),),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
-        });
   }
 }
