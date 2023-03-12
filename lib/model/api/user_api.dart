@@ -42,7 +42,7 @@ class UserApi {
     return http.post(
       uri,
       body: {
-        "email": email,
+        "identifier": email,
         "password": senha,
       },
     ).then((value) async {
