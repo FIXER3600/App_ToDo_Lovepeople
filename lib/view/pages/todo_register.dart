@@ -1,10 +1,11 @@
-// ignore_for_file: equal_elements_in_set
+// ignore_for_file: equal_elements_in_set//
 
 import 'package:app_todo_lovepeople/presenter/todo_register_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+//
 class TodoRegister extends StatefulWidget {
   const TodoRegister({super.key});
 
@@ -16,15 +17,8 @@ class _TodoRegisterState extends State<TodoRegister> {
   final TextEditingController titulotarefa = TextEditingController();
   final TextEditingController descricaotarefa = TextEditingController();
 
-  setFullScreen() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,
-        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-  }
-
   @override
   Widget build(BuildContext context) {
-    setFullScreen();
-
     return Consumer<TodoRegisterPresenter>(
         builder: (context, controller, child) {
       return Scaffold(
@@ -242,15 +236,45 @@ class _TodoRegisterState extends State<TodoRegister> {
               ]),
             ],
           ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 90,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context, true);
+                },
+                child: Icon(
+                  Icons.clear_rounded,
+                  size: 80,
+                  color: Colors.white,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  controller.register(
+                    titulotarefa.text,
+                    descricaotarefa.text,
+                    success: () {
+                      Navigator.pop(context, true);
+                    },
+                  );
+                },
+                child: Icon(
+                  Icons.check_rounded,
+                  size: 80,
+                  color: Colors.white,
+                ),
+              ),
+            ]),
+          ]),
         ),
       );
     });
   }
 }
-
-
-
-//GestureDetector(
-         // onTap: () {
-           // Navigator.of(context).popAndPushNamed('\task_list');
-          //},
