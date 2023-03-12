@@ -26,19 +26,13 @@ class MyApp extends StatelessWidget {
         providers: [
           Provider(create: (_) => UserApi()),
           Provider(create: (_) => TodoApi()),
-          ChangeNotifierProvider(
-              create: (context) => UserPresenter(context.read())),
-          ChangeNotifierProvider(
-              create: (context) => TodoRegisterPresenter(context.read())),
-          Provider<UserApi>(create: (_) => UserApi()),
           Provider<TodoPresenter>(create: (_) => TodoPresenter(context.read())),
           ChangeNotifierProvider(
               create: (context) => UserPresenter(context.read())),
           ChangeNotifierProvider(
-            create: (context) => UserPresenterLogin(
-              context.read(),
-            ),
-          ),
+              create: (context) => UserPresenterLogin(context.read())),
+          ChangeNotifierProvider(
+              create: (context) => TodoPresenter(context.read())),
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',

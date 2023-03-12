@@ -15,4 +15,14 @@ class TodoPresenter extends ChangeNotifier {
       notifyListeners();
     });
   }
+
+  void delete(String id, {VoidCallback? sucess}) {
+    todoApi.delete(id).then((value) => (value) {
+          if (value) {
+            sucess?.call();
+            print('deletada com sucesso');
+            getTODOlist();
+          }
+        });
+  }
 }
