@@ -58,6 +58,7 @@ class _TaskListState extends State<TaskList> {
   void initState() {
     super.initState();
     //todoPresenter.getTODOlist();
+    //var item =  TodoPresenter(TodoApi()).todoList;
   }
 
   @override
@@ -119,14 +120,11 @@ class _TaskListState extends State<TaskList> {
                       child: ListView.builder(
                         itemCount: controller.todoList.length,
                         itemBuilder: (BuildContext context, int index) {
+                          var item = controller.todoList[index];
                           box(
-                              controller.todoList[index].attributes?.color ??
-                                  '',
-                              controller.todoList[index].attributes?.title ??
-                                  '',
-                              controller.todoList[index].attributes
-                                      ?.description ??
-                                  '');
+                              item.attributes?.color ?? '',
+                              item.attributes?.title ?? '',
+                              item.attributes?.description ?? '');
                           // return box(
                           //     todoList[index].attributes?.color ?? '',
                           //     todoList[index].attributes?.title ?? '',

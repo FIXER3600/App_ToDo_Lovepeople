@@ -40,22 +40,19 @@ class MyApp extends StatelessWidget {
               context.read(),
             ),
           ),
-
           ChangeNotifierProvider(
             create: (context) => TodoPresenter(
               context.read(),
             ),
           ),
-
-          
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',
             debugShowCheckedModeBanner: false,
-            initialRoute: 'todo_list',
+            initialRoute: 'login',
             routes: {
               'login': (context) => const Login(),
-              'todo_register': (context) => const TodoRegister(),
+              'todo_register': (context) => TodoRegister(),
               'signup': (context) => const Signup(),
               'succsess': (context) => const SignupSuccsess(),
               'todo_list': (context) => const TaskList(),
