@@ -183,27 +183,49 @@ class _TaskListState extends State<TaskList> {
                         onTap: () => showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                                  backgroundColor: Colors.white,
-                                  content: Container(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20)),
+                                  content: SizedBox(
+                                    height: size.height * 0.1,
+                                    width: size.width * 1.0,
                                     child: Column(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        const Text('Deseja deletar este item?'),
+                                        const Text('Deseja deletar este item?',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                                color: Color.fromARGB(
+                                                    255, 107, 4, 125))),
                                         const Text(
-                                            '"******" será removida a lixeira'),
+                                            '"******" será removida a lixeira',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                                color: Color.fromARGB(
+                                                    255, 107, 4, 125))),
+                                        SizedBox(height: 22),
                                         Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                              MainAxisAlignment.end,
                                           children: const [
-                                            Text('Confirmar'),
-                                            Text('Cancelar'),
+                                            Text('Confirmar',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15,
+                                                    color: Color.fromARGB(
+                                                        255, 107, 4, 125))),
+                                            SizedBox(width: 15),
+                                            Text('Cancelar',
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 15,
+                                                    color: Color.fromARGB(
+                                                        255, 153, 98, 162))),
                                           ],
                                         )
                                       ],
                                     ),
-                                    height: size.height * 0.10,
-                                    width: size.width * 0.10,
-                                    color: const Color.fromARGB(
-                                        255, 234, 233, 228),
                                   ),
                                 )),
                         child: const Icon(Icons.delete)),

@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             title: 'ToDo Lovepeople',
             debugShowCheckedModeBanner: false,
-            initialRoute: 'login',
+            initialRoute: 'todo_list',
             routes: {
               'login': (context) => const Login(),
               'todo_register': (context) => const TodoRegister(),
