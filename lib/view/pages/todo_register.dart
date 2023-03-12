@@ -226,8 +226,3 @@ class _TodoRegisterState extends State<TodoRegister> {
     });
   }
 }
-
-//snfusnfusanfuna
-//git ojnofdnfond
-//pfinspfims
-//jjfeudfdou
