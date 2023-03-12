@@ -1,6 +1,7 @@
 import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 import 'package:app_todo_lovepeople/model/todo.dart';
 import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
+import 'package:app_todo_lovepeople/view/pages/todo_register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -57,6 +58,7 @@ class _TaskListState extends State<TaskList> {
   void initState() {
     super.initState();
     //todoPresenter.getTODOlist();
+    //var item =  TodoPresenter(TodoApi()).todoList;
   }
 
   @override
@@ -118,14 +120,11 @@ class _TaskListState extends State<TaskList> {
                       child: ListView.builder(
                         itemCount: controller.todoList.length,
                         itemBuilder: (BuildContext context, int index) {
+                          var item = controller.todoList[index];
                           box(
-                              controller.todoList[index].attributes?.color ??
-                                  '',
-                              controller.todoList[index].attributes?.title ??
-                                  '',
-                              controller.todoList[index].attributes
-                                      ?.description ??
-                                  '');
+                              item.attributes?.color ?? '',
+                              item.attributes?.title ?? '',
+                              item.attributes?.description ?? '');
                           // return box(
                           //     todoList[index].attributes?.color ?? '',
                           //     todoList[index].attributes?.title ?? '',
@@ -141,7 +140,8 @@ class _TaskListState extends State<TaskList> {
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed('todo_register');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const TodoRegister()));
                     },
                     child: const Icon(
                       Icons.add,
