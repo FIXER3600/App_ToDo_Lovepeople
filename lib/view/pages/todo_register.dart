@@ -1,4 +1,4 @@
-// ignore_for_file: equal_elements_in_set
+// ignore_for_file: equal_elements_in_set//
 
 import 'package:app_todo_lovepeople/presenter/todo_register_presenter.dart';
 import 'package:app_todo_lovepeople/view/widgets/textformfield.dart';
@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+//
 class TodoRegister extends StatefulWidget {
   const TodoRegister({super.key});
 
@@ -227,7 +228,3 @@ class _TodoRegisterState extends State<TodoRegister> {
   }
 }
 
-//snfusnfusanfuna
-//git ojnofdnfond
-//pfinspfims
-//jjfeudfdou
