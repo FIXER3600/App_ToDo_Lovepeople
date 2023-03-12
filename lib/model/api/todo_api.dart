@@ -36,7 +36,7 @@ class TodoApi {
   ) async {
     Uri uri = Uri.parse('${baseUrl}todos');
     final prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token');
+    String? token = prefs.getString('jwt');
 
     Map<String, dynamic> body = {
       'data': {"title": titulo, "description": descricao, "color": cor}

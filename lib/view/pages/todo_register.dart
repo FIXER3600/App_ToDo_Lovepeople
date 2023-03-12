@@ -18,15 +18,8 @@ class _TodoRegisterState extends State<TodoRegister> {
   final TextEditingController titulotarefa = TextEditingController();
   final TextEditingController descricaotarefa = TextEditingController();
 
-  setFullScreen() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack,
-        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-  }
-
   @override
   Widget build(BuildContext context) {
-    setFullScreen();
-
     return Consumer<TodoRegisterPresenter>(
         builder: (context, controller, child) {
       return Scaffold(
@@ -197,23 +190,8 @@ class _TodoRegisterState extends State<TodoRegister> {
                 ),
               ),
             ),
-
-          ),
-          const SizedBox(
-            height: 90,
-          ),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            InkWell(
-              onTap: () {},
-              child: const Icon(
-                Icons.clear_rounded,
-                size: 80,
-                color: Colors.white,
-              ),
-
             const SizedBox(
               height: 90,
-
             ),
             Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
               InkWell(
@@ -249,10 +227,4 @@ class _TodoRegisterState extends State<TodoRegister> {
     });
   }
 }
-//
 
-
-//GestureDetector(
-         // onTap: () {
-           // Navigator.of(context).popAndPushNamed('\task_list');
-          //},

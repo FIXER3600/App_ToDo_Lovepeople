@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
               create: (context) => UserPresenter(context.read())),
           ChangeNotifierProvider(
               create: (context) => TodoRegisterPresenter(context.read())),
-
           Provider<UserApi>(create: (_) => UserApi()),
           Provider<TodoPresenter>(create: (_) => TodoPresenter(context.read())),
           ChangeNotifierProvider(
@@ -40,7 +39,6 @@ class MyApp extends StatelessWidget {
               context.read(),
             ),
           ),
-
         ],
         child: MaterialApp(
             title: 'ToDo Lovepeople',
