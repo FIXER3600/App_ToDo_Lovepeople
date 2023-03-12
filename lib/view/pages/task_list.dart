@@ -1,6 +1,7 @@
 import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 import 'package:app_todo_lovepeople/model/todo.dart';
 import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
+import 'package:app_todo_lovepeople/view/pages/todo_register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -141,7 +142,8 @@ class _TaskListState extends State<TaskList> {
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushNamed('todo_register');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const TodoRegister()));
                     },
                     child: const Icon(
                       Icons.add,
