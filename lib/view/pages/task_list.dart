@@ -25,7 +25,8 @@ class _TaskListState extends State<TaskList> {
   @override
   void initState() {
     super.initState();
-    context.read<TodoPresenter>().getTODOlist(); //todoPresenter.getTODOlist();
+    context.read<TodoPresenter>().getTODOlist();
+    //todoPresenter.getTODOlist();
     //var item =  TodoPresenter(TodoApi()).todoList;
   }
 
@@ -86,11 +87,29 @@ class _TaskListState extends State<TaskList> {
                     child: SizedBox(
                       height: size.height * 0.9,
                       child: ListView.builder(
-                        shrinkWrap: true,
+                        shrinkWrap: false,
                         itemCount: controller.todoList.length,
-                        itemBuilder: (BuildContext context, int index) {
+                        itemBuilder: (context, index) {
                           var item = controller.todoList[index];
-                          return box(
+
+                          // return Padding(
+                          //   padding: EdgeInsets.all(10.0),
+                          //   child: Card(
+                          //     child: Padding(
+                          //       padding: EdgeInsets.all(10.0),
+                          //       child: Row(
+                          //         children: [
+                          //           Card(
+                          //             child: Text(item.attributes?.title ?? '',
+                          //             ),
+                          //           ),
+                          //           Card(child: Text(item.attributes?.color ?? ''))
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // );
+                          return Box(
                               item.attributes?.color ?? '',
                               item.attributes?.title ?? '',
                               item.attributes?.description ?? '',
@@ -124,5 +143,15 @@ class _TaskListState extends State<TaskList> {
         );
       },
     );
+  }
+}
+
+Color _getColor(String color) {
+  try {
+    String c = color.replaceAll('#', '');
+    return Color(0xFF + int.parse(c));
+  } catch (e) {
+    print(e);
+    return Colors.white;
   }
 }
