@@ -15,7 +15,7 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
-  TextEditingController? _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   setFullScreen() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive,
@@ -78,63 +78,36 @@ class _TaskListState extends State<TaskList> {
                   ],
                 ),
                 // SEACH BOX
-
                 searchBox(context, controller),
-
                 Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: axisDirectionToAxis(AxisDirection.down),
-                    child: SizedBox(
-                      height: size.height * 0.9,
-                      child: ListView.builder(
-                        shrinkWrap: false,
-                        itemCount: controller.todoList.length,
-                        itemBuilder: (context, index) {
-                          var item = controller.todoList[index];
+                  child: ListView.builder(
+                    itemCount: controller.todoList.length,
+                    itemBuilder: (context, index) {
+                      var item = controller.todoList[index];
 
-                          // return Padding(
-                          //   padding: EdgeInsets.all(10.0),
-                          //   child: Card(
-                          //     child: Padding(
-                          //       padding: EdgeInsets.all(10.0),
-                          //       child: Row(
-                          //         children: [
-                          //           Card(
-                          //             child: Text(item.attributes?.title ?? '',
-                          //             ),
-                          //           ),
-                          //           Card(child: Text(item.attributes?.color ?? ''))
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // );
-                          return Box(
-                              item.attributes?.color ?? '',
-                              item.attributes?.title ?? '',
-                              item.attributes?.description ?? '',
-                              item.id ?? 0,
-                              context,
-                              controller);
-                        },
-                      ),
-                    ),
+                      return Box(
+                        item.attributes?.color ?? '',
+                        item.attributes?.title ?? '',
+                        item.attributes?.description ?? '',
+                        item.id ?? 0,
+                        context,
+                        controller,
+                      );
+                    },
                   ),
                 ),
-
-                Align(
-                  //d
-                  alignment: Alignment.bottomCenter,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const TodoRegister()));
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      size: 75,
-                      color: Colors.white,
-                    ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const TodoRegister(),
+                      ),
+                    );
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 75,
+                    color: Colors.white,
                   ),
                 )
               ],
