@@ -1,43 +1,10 @@
-import 'package:app_todo_lovepeople/model/api/todo_api.dart';
-import 'package:app_todo_lovepeople/model/todo.dart';
 import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:app_todo_lovepeople/view/pages/todo_register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-// List<Todo> todoList = <Todo>[
-//   Todo(
-//       attributes: Attributes(
-//           color: '#FFF2CC',
-//           title: 'Atividade Fisica',
-//           description:
-//               'atividade de caminhar todos os dias, 90 minutos de natação, pedalar 250 km, 180 minuntos de musculação leve')),
-//   Todo(
-//       attributes: Attributes(
-//           color: '#C7FFCB',
-//           title: 'Faculdade',
-//           description:
-//               'Estudar para logica de programação, Orientação a Objeto, banco de dados, Arquiterura de software')),
-//   Todo(
-//       attributes: Attributes(
-//           color: '#FFF2CC',
-//           title: 'Desenvovimento de Software',
-//           description:
-//               'entregar pelo menos um aplicativo por semana na lovepeople')),
-//   Todo(
-//       attributes: Attributes(
-//           color: '#FFF2CC',
-//           title: 'Desenvovimento de Software',
-//           description:
-//               'entregar pelo menos um aplicativo por semana na lovepeople')),
-//   Todo(
-//       attributes: Attributes(
-//           color: '#FFF2CC',
-//           title: 'Desenvovimento de Software',
-//           description:
-//               'entregar pelo menos um aplicativo por semana na lovepeople')),
-// ];
+import '../widgets/box.dart';
 
 class TaskList extends StatefulWidget {
   const TaskList({super.key});
@@ -57,7 +24,7 @@ class _TaskListState extends State<TaskList> {
   @override
   void initState() {
     super.initState();
-    //todoPresenter.getTODOlist();
+    context.read<TodoPresenter>().getTODOlist(); //todoPresenter.getTODOlist();
     //var item =  TodoPresenter(TodoApi()).todoList;
   }
 
@@ -121,14 +88,11 @@ class _TaskListState extends State<TaskList> {
                         itemCount: controller.todoList.length,
                         itemBuilder: (BuildContext context, int index) {
                           var item = controller.todoList[index];
-                          box(
+                          return box(
                               item.attributes?.color ?? '',
                               item.attributes?.title ?? '',
-                              item.attributes?.description ?? '');
-                          // return box(
-                          //     todoList[index].attributes?.color ?? '',
-                          //     todoList[index].attributes?.title ?? '',
-                          //     todoList[index].attributes?.description ?? '');
+                              item.attributes?.description ?? '',
+                              context);
                         },
                       ),
                     ),
@@ -155,128 +119,6 @@ class _TaskListState extends State<TaskList> {
           ),
         );
       },
-    );
-  }
-
-  Widget box(String cor, String titulo, String descricao) {
-    String corString = cor.substring(1);
-    final size = MediaQuery.of(context).size;
-
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(6.0),
-          width: size.width * 0.94,
-          height: size.height * 0.20,
-          decoration: BoxDecoration(
-            color: Color(int.parse('0xff$corString')),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: size.width * 0.01),
-                    child: Text(
-                      titulo,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                          color: Color.fromARGB(255, 107, 4, 125)),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: size.width * 0.01),
-                    child: InkWell(
-                      onTap: () => showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          content: SizedBox(
-                            height: size.height * 0.1,
-                            width: size.width * 1.0,
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text('Deseja deletar este item?',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                        color:
-                                            Color.fromARGB(255, 107, 4, 125))),
-                                const Text('"******" será removida a lixeira',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15,
-                                        color:
-                                            Color.fromARGB(255, 107, 4, 125))),
-                                const SizedBox(height: 22),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                        // todoPresenter.delete(
-                                        //   item.id?.toString() ?? '',
-                                        // );
-                                        return print('confirmar');
-                                      },
-                                      child: GestureDetector(
-                                        child: const Text('Confirmar',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 15,
-                                                color: Color.fromARGB(
-                                                    255, 107, 4, 125))),
-                                      ),
-                                    ),
-                                    SizedBox(width: 15),
-                                    GestureDetector(
-                                      onTap: () {
-                                        print('Cancelar');
-                                      },
-                                      child: Text('Cancelar',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15,
-                                              color: Color.fromARGB(
-                                                  255, 153, 98, 162))),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      child: const Icon(Icons.delete),
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                    left: size.width * 0.01, top: size.height * 0.001),
-                child: Text(
-                  descricao,
-                  style: const TextStyle(fontSize: 20),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-          //width: 15,
-        ),
-      ],
     );
   }
 
