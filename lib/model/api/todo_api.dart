@@ -10,12 +10,13 @@ class TodoApi {
   Future<List<Todo>> getList() async {
     final prefs = await SharedPreferences.getInstance();
 
-    String? token = prefs.getString('token');
+    String? token = prefs.getString('jwt');
+    
     Uri uri = Uri.parse('${baseUrl}todos');
     return http.get(
       uri,
       headers: {
-        'Authotization': 'Bearer $token',
+        'Authorization': 'Bearer $token',
       },
     ).then((value) {
       if (value.statusCode == 200) {

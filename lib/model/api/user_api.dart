@@ -51,7 +51,6 @@ class UserApi {
         await sharedPreferences.setString('jwt', json['jwt']);
         await sharedPreferences.setBool('isAuth', true);
         var token = sharedPreferences.getString('jwt');
-        print(token);
         return json['jwt'];
       } else {
         return erro;

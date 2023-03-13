@@ -27,15 +27,6 @@ class _LoginState extends State<Login> {
 
   final _formKey = GlobalKey<FormState>();
 
-  /*void loginUser(TextEditingController email, TextEditingController password) {
-    context
-        .read()<UserPresenterLogin>()
-        .loginUser(emailController.text, passwordController.text)
-        .then((value) => {print(value)})
-        .catchError((onError) {
-      print(onError);
-    });
-  }*/
 
   @override
   Widget build(BuildContext context) {
