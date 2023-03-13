@@ -61,7 +61,7 @@ class TodoApi {
 
   Future<bool> delete(String id) async {
     final prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token');
+    String? token = prefs.getString('jwt');
 
     Uri uri = Uri.parse('${baseUrl}todos/$id');
 

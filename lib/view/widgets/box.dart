@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-Widget box(String cor, String titulo, String descricao, BuildContext context) {
+import '../../presenter/todo_list_presenter.dart';
+
+Widget box(String cor, String titulo, String descricao, int? id, BuildContext context,TodoPresenter controller) {
 
     final size = MediaQuery.of(context).size;
 
@@ -41,10 +43,11 @@ Widget box(String cor, String titulo, String descricao, BuildContext context) {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           content: SizedBox(
-                            height: size.height * 0.1,
+                            height: size.height * 0.2,
                             width: size.width * 1.0,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 const Text('Deseja deletar este item?',
                                     style: TextStyle(
@@ -52,8 +55,8 @@ Widget box(String cor, String titulo, String descricao, BuildContext context) {
                                         fontSize: 20,
                                         color:
                                             Color.fromARGB(255, 107, 4, 125))),
-                                const Text('"******" será removida a lixeira',
-                                    style:TextStyle(
+                                Text('"$titulo" será removida a lixeira',
+                                    style:const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 15,
                                         color:
@@ -65,10 +68,10 @@ Widget box(String cor, String titulo, String descricao, BuildContext context) {
                                     GestureDetector(
                                       onTap: () {
                                         Navigator.pop(context);
-                                        // todoPresenter.delete(
-                                        //   item.id?.toString() ?? '',
-                                        // );
-                                        return print('confirmar');
+                                        controller.delete(
+                                           id.toString(),
+                                        );
+                                        
                                       },
                                       child: GestureDetector(
                                         child: const Text('Confirmar',
@@ -82,7 +85,7 @@ Widget box(String cor, String titulo, String descricao, BuildContext context) {
                                     const SizedBox(width: 15),
                                     GestureDetector(
                                       onTap: () {
-                                        print('Cancelar');
+                                         Navigator.of(context).pop();
                                       },
                                       child: const Text('Cancelar',
                                           style: TextStyle(

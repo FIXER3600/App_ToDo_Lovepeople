@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/box.dart';
+import '../widgets/searchBox.dart';
 
 class TaskList extends StatefulWidget {
   const TaskList({super.key});
@@ -77,7 +78,7 @@ class _TaskListState extends State<TaskList> {
                 ),
                 // SEACH BOX
 
-                searchBox(),
+                searchBox(context),
 
                 Expanded(
                   child: SingleChildScrollView(
@@ -85,6 +86,7 @@ class _TaskListState extends State<TaskList> {
                     child: SizedBox(
                       height: size.height * 0.9,
                       child: ListView.builder(
+                        shrinkWrap: true,
                         itemCount: controller.todoList.length,
                         itemBuilder: (BuildContext context, int index) {
                           var item = controller.todoList[index];
@@ -92,7 +94,9 @@ class _TaskListState extends State<TaskList> {
                               item.attributes?.color ?? '',
                               item.attributes?.title ?? '',
                               item.attributes?.description ?? '',
-                              context);
+                              item.id ?? 0,
+                              context,
+                              controller);
                         },
                       ),
                     ),
@@ -119,25 +123,6 @@ class _TaskListState extends State<TaskList> {
           ),
         );
       },
-    );
-  }
-
-  Widget searchBox() {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.94,
-      padding: const EdgeInsets.only(top: 30, bottom: 15),
-      child: const TextField(
-        decoration: InputDecoration(
-            labelText: 'Busque palavras-chave',
-            suffixIcon: Icon(
-              Icons.search,
-              size: 40,
-            ),
-            enabledBorder: UnderlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15))),
-            filled: true,
-            fillColor: Colors.white),
-      ),
     );
   }
 }
