@@ -6,6 +6,7 @@ import 'package:app_todo_lovepeople/model/api/todo_api.dart';
 class TodoPresenter extends ChangeNotifier {
   final TodoApi todoApi;
   List<Todo> todoList = [];
+  List<Todo> _list = [];
 
   TodoPresenter(this.todoApi);
 
@@ -24,5 +25,16 @@ class TodoPresenter extends ChangeNotifier {
             getTODOlist();
           }
         });
+  }
+
+  void inputText(String value) {
+    todoList = _list
+        .where((element) =>
+            element.attributes?.title
+                ?.toLowerCase()
+                .contains(value.toLowerCase()) ??
+            false)
+        .toList();
+    notifyListeners();
   }
 }

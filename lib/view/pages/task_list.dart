@@ -78,7 +78,7 @@ class _TaskListState extends State<TaskList> {
                 ),
                 // SEACH BOX
 
-                searchBox(context),
+                searchBox(context, controller),
 
                 Expanded(
                   child: SingleChildScrollView(
