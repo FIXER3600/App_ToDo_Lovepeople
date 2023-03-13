@@ -12,6 +12,7 @@ class TodoApi {
 
     String? token = prefs.getString('token');
     Uri uri = Uri.parse('${baseUrl}todos');
+
     return http.get(
       uri,
       headers: {
@@ -19,11 +20,14 @@ class TodoApi {
       },
     ).then((value) {
       if (value.statusCode == 200) {
+        print(value.statusCode);
         Map json = jsonDecode(value.body);
         return (json['data'] as List).map((e) {
           return Todo.fromJson(e);
         }).toList();
       } else {
+        print(value.body);
+
         return [];
       }
     });
