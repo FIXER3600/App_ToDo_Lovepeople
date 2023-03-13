@@ -138,12 +138,17 @@ class _TaskListState extends State<TaskList> {
                 ),
 
                 Align(
-                  //d
                   alignment: Alignment.bottomCenter,
                   child: GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => const TodoRegister()));
+                      controller.getTODOlist();
+                      // Navigator.pushNamed(context, 'todo_list').then((value) {
+                      //   if (value == true) {
+                      //     controller.getTODOlist();
+                      //   }
+                      // });
                     },
                     child: const Icon(
                       Icons.add,
@@ -300,4 +305,14 @@ class _TaskListState extends State<TaskList> {
       ),
     );
   }
+
+  // Color _getColor(String color) {
+  //   try {
+  //     String c = color.replaceAll('#', '');
+  //     return Color(int.parse('0xFF$c'));
+  //   } catch (e) {
+  //     print(e);
+  //     return Colors.white;
+  //   }
+  // }
 }
