@@ -12,11 +12,9 @@ class TodoRegister extends StatefulWidget {
 
   @override
   State<TodoRegister> createState() => _TodoRegisterState();
-  
 }
 
 class _TodoRegisterState extends State<TodoRegister> {
-  
   final TextEditingController titulotarefa = TextEditingController();
   final TextEditingController descricaotarefa = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -227,7 +225,9 @@ class _TodoRegisterState extends State<TodoRegister> {
                         titulotarefa.text,
                         descricaotarefa.text,
                         success: () {
-                          Navigator.pop(context, true);
+                          //Navigator.pop(context, true);
+                          Navigator.popAndPushNamed(context, 'todo_list');
+                          //Navigator.
                         },
                       );
                     }
