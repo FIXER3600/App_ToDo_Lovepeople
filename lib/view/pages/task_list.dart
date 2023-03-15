@@ -98,11 +98,14 @@ class _TaskListState extends State<TaskList> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
                         builder: (context) => const TodoRegister(),
                       ),
+                      (route) => false,
                     );
+                    // Navigator.pushNamedAndRemoveUntil(
+                    //     context, 'todo_register', (route) => false);
                   },
                   child: const Icon(
                     Icons.add,
@@ -119,12 +122,12 @@ class _TaskListState extends State<TaskList> {
   }
 }
 
-Color _getColor(String color) {
-  try {
-    String c = color.replaceAll('#', '');
-    return Color(0xFF + int.parse(c));
-  } catch (e) {
-    print(e);
-    return Colors.white;
-  }
-}
+// Color _getColor(String color) {
+//   try {
+//     String c = color.replaceAll('#', '');
+//     return Color(0xFF + int.parse(c));
+//   } catch (e) {
+//     print(e);
+//     return Colors.white;
+//   }
+// }
