@@ -37,7 +37,7 @@ Widget Box(String cor, String titulo, String descricao, int? id,
                 titulo,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 25,
+                    fontSize: 15,
                     color: Color.fromARGB(255, 107, 4, 125)),
               ),
             ),
@@ -81,8 +81,8 @@ Widget Box(String cor, String titulo, String descricao, int? id,
                                 onTap: () {
                                   Navigator.pop(context);
                                   controller.delete(
-                                    id.toString(),
-                                  );
+                                      id.toString(), 
+                                      controller.getTODOlist(),);
                                 },
                                 child: GestureDetector(
                                   child: const Text(

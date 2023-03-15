@@ -6,7 +6,7 @@ Widget searchBox(BuildContext context, TodoPresenter controller) {
     width: MediaQuery.of(context).size.width * 0.94,
     padding: const EdgeInsets.only(top: 30, bottom: 15),
     child: TextFormField(
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
           labelText: 'Busque palavras-chave',
           suffixIcon: Icon(
             Icons.search,

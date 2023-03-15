@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, unused_local_variable
+
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;

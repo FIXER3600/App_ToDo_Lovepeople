@@ -1,4 +1,5 @@
 import 'package:app_todo_lovepeople/model/api/todo_api.dart';
+import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:flutter/material.dart';
 
 class TodoRegisterPresenter extends ChangeNotifier {
@@ -17,6 +18,7 @@ class TodoRegisterPresenter extends ChangeNotifier {
     todoApi.registerTodo(title, description, colorSelected).then((created) {
       if (created) {
         success?.call();
+        
       }
     });
   }
