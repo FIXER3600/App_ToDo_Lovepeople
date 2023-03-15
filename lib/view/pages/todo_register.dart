@@ -210,7 +210,8 @@ class _TodoRegisterState extends State<TodoRegister> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pop(context, true);
+                    //Navigator.pop(context, true);
+                    Navigator.popAndPushNamed(context, 'todo_list');
                   },
                   child: const Icon(
                     Icons.clear_rounded,
