@@ -15,7 +15,7 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
-  TextEditingController? _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   setFullScreen() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive,
@@ -25,7 +25,8 @@ class _TaskListState extends State<TaskList> {
   @override
   void initState() {
     super.initState();
-    context.read<TodoPresenter>().getTODOlist(); //todoPresenter.getTODOlist();
+    context.read<TodoPresenter>().getTODOlist();
+    //todoPresenter.getTODOlist();
     //var item =  TodoPresenter(TodoApi()).todoList;
   }
 
@@ -77,45 +78,36 @@ class _TaskListState extends State<TaskList> {
                   ],
                 ),
                 // SEACH BOX
-
-                searchBox(context),
-
+                searchBox(context, controller),
                 Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: axisDirectionToAxis(AxisDirection.down),
-                    child: SizedBox(
-                      height: size.height * 0.9,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.todoList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var item = controller.todoList[index];
-                          return box(
-                              item.attributes?.color ?? '',
-                              item.attributes?.title ?? '',
-                              item.attributes?.description ?? '',
-                              item.id ?? 0,
-                              context,
-                              controller);
-                        },
-                      ),
-                    ),
+                  child: ListView.builder(
+                    itemCount: controller.todoList.length,
+                    itemBuilder: (context, index) {
+                      var item = controller.todoList[index];
+
+                      return Box(
+                        item.attributes?.color ?? '',
+                        item.attributes?.title ?? '',
+                        item.attributes?.description ?? '',
+                        item.id ?? 0,
+                        context,
+                        controller,
+                      );
+                    },
                   ),
                 ),
-
-                Align(
-                  //d
-                  alignment: Alignment.bottomCenter,
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const TodoRegister()));
-                    },
-                    child: const Icon(
-                      Icons.add,
-                      size: 75,
-                      color: Colors.white,
-                    ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const TodoRegister(),
+                      ),
+                    );
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 75,
+                    color: Colors.white,
                   ),
                 )
               ],
@@ -124,5 +116,15 @@ class _TaskListState extends State<TaskList> {
         );
       },
     );
+  }
+}
+
+Color _getColor(String color) {
+  try {
+    String c = color.replaceAll('#', '');
+    return Color(0xFF + int.parse(c));
+  } catch (e) {
+    print(e);
+    return Colors.white;
   }
 }

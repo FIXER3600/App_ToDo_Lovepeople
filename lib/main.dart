@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
             initialRoute: 'login',
             routes: {
               'login': (context) => const Login(),
-              'todo_register': (context) => TodoRegister(),
+              'todo_register': (context) => const TodoRegister(),
               'signup': (context) => const Signup(),
               'succsess': (context) => const SignupSuccsess(),
               'todo_list': (context) => const TaskList(),

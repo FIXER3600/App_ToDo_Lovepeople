@@ -1,5 +1,7 @@
 // ignore_for_file: equal_elements_in_set//
 
+import 'package:app_todo_lovepeople/model/api/todo_api.dart';
+import 'package:app_todo_lovepeople/presenter/todo_list_presenter.dart';
 import 'package:app_todo_lovepeople/presenter/todo_register_presenter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,12 +12,14 @@ class TodoRegister extends StatefulWidget {
 
   @override
   State<TodoRegister> createState() => _TodoRegisterState();
+  
 }
 
 class _TodoRegisterState extends State<TodoRegister> {
+  
   final TextEditingController titulotarefa = TextEditingController();
   final TextEditingController descricaotarefa = TextEditingController();
-final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Consumer<TodoRegisterPresenter>(
@@ -72,7 +76,7 @@ final _formKey = GlobalKey<FormState>();
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       )),
-                       validator: (value) {
+                  validator: (value) {
                     if (value!.isEmpty) {
                       return 'Campo obrigatório';
                     }
@@ -88,7 +92,6 @@ final _formKey = GlobalKey<FormState>();
                 child: TextFormField(
                   controller: descricaotarefa,
                   keyboardType: TextInputType.multiline,
-                  
                   maxLines: 13,
                   decoration: InputDecoration(
                       filled: true,
@@ -97,7 +100,7 @@ final _formKey = GlobalKey<FormState>();
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),
                       )),
-                      validator: (value) {
+                  validator: (value) {
                     if (value!.isEmpty) {
                       return 'Campo obrigatório';
                     }
@@ -219,16 +222,15 @@ final _formKey = GlobalKey<FormState>();
                 ),
                 InkWell(
                   onTap: () {
-                     if (_formKey.currentState!.validate()) {
-                    controller.register(
-                      titulotarefa.text,
-                      descricaotarefa.text,
-                      success: () {
-                        Navigator.pop(context, true);
-                      },
-                    ); 
-                  }
-                    
+                    if (_formKey.currentState!.validate()) {
+                      controller.register(
+                        titulotarefa.text,
+                        descricaotarefa.text,
+                        success: () {
+                          Navigator.pop(context, true);
+                        },
+                      );
+                    }
                   },
                   child: const Icon(
                     Icons.check_rounded,
