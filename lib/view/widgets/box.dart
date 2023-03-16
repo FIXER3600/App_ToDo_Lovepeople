@@ -37,7 +37,7 @@ Widget Box(String cor, String titulo, String descricao, int? id,
                 titulo,
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                    fontSize: 25,
                     color: Color.fromARGB(255, 107, 4, 125)),
               ),
             ),
@@ -77,32 +77,35 @@ Widget Box(String cor, String titulo, String descricao, int? id,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              GestureDetector(
-                                onTap: () {
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white),
+                                onPressed: () {
                                   Navigator.pop(context);
                                   controller.delete(
-                                      id.toString(), 
-                                      controller.getTODOlist(),);
+                                    id.toString(),
+                                    controller.getTODOlist(),
+                                  );
                                 },
-                                child: GestureDetector(
-                                  child: const Text(
-                                    'Confirmar',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      color: Color.fromARGB(
-                                        255,
-                                        107,
-                                        4,
-                                        125,
-                                      ),
+                                child: const Text(
+                                  'Confirmar',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                    color: Color.fromARGB(
+                                      255,
+                                      107,
+                                      4,
+                                      125,
                                     ),
                                   ),
                                 ),
                               ),
                               const SizedBox(width: 15),
-                              GestureDetector(
-                                onTap: () {
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white),
+                                onPressed: () {
                                   Navigator.of(context).pop();
                                 },
                                 child: const Text(
@@ -123,7 +126,7 @@ Widget Box(String cor, String titulo, String descricao, int? id,
                 ),
                 child: const Icon(
                   Icons.delete,
-                  size: 30,
+                  size: 35,
                 ),
               ),
             ),
